@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Tycho Demo RCP" uid="tychodemo.product" id="tychodemo.product" application="tychodemo.application" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="Tycho Demo RCP" uid="tychodemo.product" id="tychodemo.bundle.product" application="tychodemo.bundle.application" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
 
 
    <configIni use="default">
@@ -15,7 +15,7 @@
    <windowImages i16="icons/alt_window_16.gif" i32="icons/alt_window_32.gif"/>
 
    <splash
-      location="tychodemo"
+      location="tychodemo.bundle"
       startupProgressRect="0,280,455,15"
       startupMessageRect="7,220,441,20"
       startupForegroundColor="FFFFFF" />
