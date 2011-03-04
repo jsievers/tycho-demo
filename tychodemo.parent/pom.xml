@@ -9,7 +9,7 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>../tychodemo</module>
+    <module>../tychodemo.bundle</module>
     <module>../tychodemo.feature</module>
     <module>../tychodemo.repository</module>
   </modules>
@@ -17,6 +17,7 @@
   <properties>
     <tycho-version>0.11.0-SNAPSHOT</tycho-version>
   </properties>
+  
   <repositories>
     <!-- configure p2 repository to resolve against -->
     <repository>
@@ -24,9 +25,10 @@
       <layout>p2</layout>
       <url>http://download.eclipse.org/releases/helios</url>
       <!-- file URL for faster and offline builds -->
-      <!-- <url>file:/${basedir}/../../helios</url> -->
+<!--       <url>file:/${basedir}/../../helios</url> -->
     </repository>
   </repositories>
+  
   <build>
     <plugins>
       <plugin>
@@ -48,7 +50,7 @@
             <environment>
               <os>linux</os>
               <ws>gtk</ws>
-              <arch>x86</arch>
+              <arch>x86_64</arch>
             </environment>
             <environment>
               <os>win32</os>
