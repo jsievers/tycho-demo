@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/tychodemo.feature_1.0.0.qualifier.jar" id="tychodemo.feature" version="1.0.0.qualifier">
+      <category name="tychodemo.rcpCategory"/>
+   </feature>
+   <category-def name="tychodemo.rcpCategory" label="My RCP category">
+      <description>
+         demo category
+      </description>
+   </category-def>
+</site>
