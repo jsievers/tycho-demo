@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.pde.ui.RuntimeWorkbench">
+<booleanAttribute key="append.args" value="true"/>
+<stringAttribute key="application" value="tychodemo.bundle.application"/>
+<booleanAttribute key="askclear" value="true"/>
+<booleanAttribute key="automaticAdd" value="true"/>
+<booleanAttribute key="automaticValidate" value="false"/>
+<stringAttribute key="bad_container_name" value="\tychodemo.bundle\tychodemo.launch"/>
+<stringAttribute key="bootstrap" value=""/>
+<stringAttribute key="checked" value="[NONE]"/>
+<booleanAttribute key="clearConfig" value="false"/>
+<booleanAttribute key="clearws" value="false"/>
+<booleanAttribute key="clearwslog" value="false"/>
+<stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/tychodemo"/>
+<booleanAttribute key="default" value="false"/>
+<booleanAttribute key="includeOptional" value="true"/>
+<stringAttribute key="location" value="${workspace_loc}/../tychodemo-ws"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} -consoleLog"/>
+<stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xms40m -Xmx384m"/>
+<stringAttribute key="pde.version" value="3.3"/>
+<stringAttribute key="product" value="tychodemo.bundle.product"/>
+<stringAttribute key="selected_target_plugins" value="org.eclipse.swt.win32.win32.x86@default:false,org.eclipse.osgi@-1:true,org.eclipse.core.jobs@default:default,org.eclipse.core.runtime.compatibility.auth@default:default,org.eclipse.core.runtime.compatibility.registry@default:false,org.eclipse.help@default:default,org.junit*4.8.1.v4_8_1_v20100427-1100@default:default,org.hamcrest.core@default:default,org.eclipse.jface.databinding@default:default,org.eclipse.equinox.registry@default:default,com.ibm.icu@default:default,javax.servlet@default:default,org.eclipse.core.runtime@default:true,org.eclipse.core.databinding.observable@default:default,org.eclipse.equinox.app@default:default,org.eclipse.jface@default:default,org.eclipse.osgi.services@default:default,org.eclipse.core.databinding@default:default,org.eclipse.swt@default:default,org.eclipse.ui@default:default,org.eclipse.core.databinding.property@default:default,org.eclipse.equinox.common@2:true,org.eclipse.core.expressions@default:default,org.eclipse.core.commands@default:default,org.eclipse.core.contenttype@default:default,org.eclipse.ui.workbench@default:default,org.eclipse.equinox.preferences@default:default"/>
+<stringAttribute key="selected_workspace_plugins" value="tychodemo.bundle.tests@default:false,tychodemo.bundle@default:default"/>
+<booleanAttribute key="show_selected_only" value="true"/>
+<stringAttribute key="templateConfig" value="${target_home}\configuration\config.ini"/>
+<stringAttribute key="timestamp" value="1299253983156"/>
+<booleanAttribute key="tracing" value="false"/>
+<booleanAttribute key="useCustomFeatures" value="false"/>
+<booleanAttribute key="useDefaultConfig" value="true"/>
+<booleanAttribute key="useDefaultConfigArea" value="true"/>
+<booleanAttribute key="useProduct" value="true"/>
+</launchConfiguration>

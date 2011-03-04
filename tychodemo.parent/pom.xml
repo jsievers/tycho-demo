@@ -10,6 +10,7 @@
 
   <modules>
     <module>../tychodemo.bundle</module>
+    <module>../tychodemo.bundle.tests</module>
     <module>../tychodemo.feature</module>
     <module>../tychodemo.repository</module>
   </modules>
@@ -17,18 +18,16 @@
   <properties>
     <tycho-version>0.11.0-SNAPSHOT</tycho-version>
   </properties>
-  
   <repositories>
     <!-- configure p2 repository to resolve against -->
     <repository>
       <id>helios</id>
       <layout>p2</layout>
       <url>http://download.eclipse.org/releases/helios</url>
-      <!-- file URL for faster and offline builds -->
-<!--       <url>file:/${basedir}/../../helios</url> -->
+            <!-- file URL for faster and offline builds -->
+      <!-- <url>file:/${basedir}/../../helios</url> -->
     </repository>
   </repositories>
-  
   <build>
     <plugins>
       <plugin>
