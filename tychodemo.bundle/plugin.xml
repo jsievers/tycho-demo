@@ -23,7 +23,7 @@
          id="product"
          point="org.eclipse.core.runtime.products">
       <product
-            application="tychodemo.application"
+            application="tychodemo.bundle.application"
             name="Tycho Demo RCP">
          <property
                name="appName"
