@@ -11,6 +11,7 @@
   <modules>
     <module>tychodemo.bundle</module>
     <module>tychodemo.bundle.tests</module>
+    <module>tychodemo.swtbot.tests</module>
     <module>tychodemo.feature</module>
     <module>tychodemo.repository</module>
     <module>tychodemo.parent</module>
