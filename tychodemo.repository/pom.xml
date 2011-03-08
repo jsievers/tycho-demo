@@ -13,4 +13,21 @@
   <artifactId>tychodemo.repository</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>eclipse-repository</packaging>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.sonatype.tycho</groupId>
+        <artifactId>tycho-p2-repository-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <configuration>
+          <!-- include all transitive dependencies, i.e. create a self-contained 
+            repository -->
+          <includeAllDependencies>true</includeAllDependencies>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+
 </project>
