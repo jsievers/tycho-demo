@@ -6,6 +6,9 @@
    <feature url="features/org.eclipse.rcp_0.0.0.jar" id="org.eclipse.rcp" version="0.0.0">
       <category name="tychodemo.category"/>
    </feature>
+   <feature url="features/tychodemo.source.feature_1.0.0.qualifier.jar" id="tychodemo.source.feature" version="1.0.0.qualifier">
+      <category name="tychodemo.category"/>
+   </feature>
    <category-def name="tychodemo.category" label="Tycho Demo Category">
       <description>
          Tycho Demo Category
