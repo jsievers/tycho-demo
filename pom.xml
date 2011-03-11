@@ -15,6 +15,7 @@
     <module>tychodemo.feature</module>
     <module>tychodemo.source.feature</module>
     <module>tychodemo.repository</module>
+    <module>tychodemo.product</module>
     <module>tychodemo.parent</module>
   </modules>
 
