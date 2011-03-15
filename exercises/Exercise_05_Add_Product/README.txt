@@ -38,7 +38,7 @@ Exercise 5: Add a product
       <plugin id="org.eclipse.osgi" autoStart="true" startLevel="-1" />
     </configurations>
     
-  - In the "General" tab:
+  - In the "Overview" tab:
     - enter product ID "tychodemo.product"
     - "The product configuration is based on": select "features"
     - Under "Product:", select "tychodemo.bundle.product"
