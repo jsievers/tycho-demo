@@ -2,8 +2,9 @@ Exercise 5: Add a product
 =========================
 
 
-- Import all 6 projects from the zip into an empty eclipse workspace using File > Import > Existing Maven Projects
-- Right-click on tychodemo.aggregator > Run As > Maven package.
+- [optional if you want to catch up from exercise 4 or reset your workspace]:
+  Import all 6 projects from the zip into an empty eclipse workspace using File > Import > Existing Maven Projects
+- Right-click on tychodemo.aggregator > Run As > Maven install.
   The build should succeed and build 6 modules
    
    tychodemo.parent 
@@ -46,8 +47,9 @@ Exercise 5: Add a product
   This is not intuitive and there will be a dedicated packaging type for p2-updatable 
   eclipse products in tycho 0.12.0.
 
-- Expected result: 
-  SUCCESSFUL build. In tychodemo.repository/target/repository, we have published the product metadata.
+- Right-click on tychodemo.aggregator > Run As > Maven install.
+  Expected result: SUCCESSFUL build.
+  In tychodemo.repository/target/repository, we have published the product metadata.
   E.g. you should now find the zipped eclipse launcher binaries in
   tychodemo.repository/target/repository/binary/
   
@@ -117,7 +119,7 @@ Exercise 5: Add a product
     tychodemo.repository/target/products/
    
 - Configure the product executable name:
-  (NOTE: this currently will not work for MacOSX, see http://bugs.eclipse.org/313997 )
+  ( CAVEAT: this currently does not work for MacOSX, see http://bugs.eclipse.org/313997 )
   Choose a name, e.g. "tychoDemoRCP" in the "Launching" tab of the product editor
   
 - Configure the product root folder:

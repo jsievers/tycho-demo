@@ -14,12 +14,14 @@ As a starting point for your convenience, the result of step 1 "Create an RCP bu
    tychodemo.bundle 
    tychodemo.aggregator 
 
-- Create a new fragment project "tychodemo.bundle.tests" with frgament host "tychodemo.bundle"
-  Notes: as opposed to classic maven projects, tests are always in a separate module
-         because otherwise we would pollute productive code with test-scoped dependencies in MANIFEST. 
-         We use a fragment because: 
-         1. otherwise we would have to export classes under test in MANIFEST
-         2. we want to be able to test package-private members
+- Create a new fragment project "tychodemo.bundle.tests" with fragment host "tychodemo.bundle"
+  Notes: - Make sure the new project root folder is located next to the existing modules
+           (Uncheck "Use default location" in the project creation wizard and enter location if necessary)
+         - As opposed to classic maven projects, tests are always in a separate module
+           because otherwise we would pollute productive code with test-scoped dependencies in MANIFEST. 
+           We use a fragment because: 
+            1. otherwise we would have to export classes under test in MANIFEST
+            2. we want to be able to test package-private members
 
 - In the fragment project, create a new JUnit test case "tychodemo.SimpleTest"
   - choose "tychodemo.bundle.ApplicationWorkbenchAdvisor" as class under test
@@ -27,6 +29,9 @@ As a starting point for your convenience, the result of step 1 "Create an RCP bu
   
 - Run the test: Right-click > Run As > JUnit Plugin Test
   - expected result: the test should fail with "java.lang.AssertionError: Not yet implemented"
+  - Note: make sure that both tychodemo.bundle as well as tychodemo.bundle.tests are active 
+          in the "Plugins" tab of the launch configuration
+          (Use "Launch with: Plug-ins selected below only")
   
 - Add the fragment module to the reactor and run the build:
   - Add a pom.xml file with content:
@@ -66,7 +71,7 @@ testGetInitialWindowPerspectiveId(tychodemo.SimpleTest)  Time elapsed: 0 sec  <<
 - Implement the test:
   - assert that "tychodemo.bundle.perspective" is the return value of 
     tychodemo.bundle.ApplicationWorkbenchAdvisor.getInitialWindowPerspectiveId()
-  - test should now succeed, 'mvn install' should also succeed
+  - test should now succeed when executed in eclipse, 'mvn install' should also succeed
   
   
 

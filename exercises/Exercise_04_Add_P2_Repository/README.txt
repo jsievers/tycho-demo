@@ -1,7 +1,7 @@
 Exercise 4: Add a p2 repository
 ===============================
 
-- [optional if you want to catch up from exercise 3]:
+- [optional if you want to catch up from exercise 3 or reset your workspace]:
   Import all 5 projects from the zip into an empty eclipse workspace using File > Import > Existing Maven Projects
 - Right-click on tychodemo.aggregator > Run As > Maven package.
   The build should succeed and build 5 modules
@@ -13,6 +13,9 @@ Exercise 4: Add a p2 repository
    tychodemo.aggregator 
 
 - Create a new update site project "tychodemo.repository"
+  Note: Make sure the new project root folder is located next to the existing module folders
+        (Uncheck "Use default location" in the project creation wizard and enter location if necessary)
+        
 - In site.xml, create a new category "tychodemo.category" 
   and add the feature "tychodemo.feature" to it
 - Rename site.xml to category.xml
