@@ -67,7 +67,7 @@ Exercise 1: Create and build a hello world RCP plugin using tycho
     <repository>
       <id>helios</id>
       <layout>p2</layout>
-      <url>http://download.eclipse.org/releases/helios</url>
+      <url>http://localhost:8081/nexus/content/repositories/helios/</url>
     </repository>
   </repositories>
 
