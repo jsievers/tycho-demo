@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/tychodemo.feature_1.0.0.qualifier.jar" id="tychodemo.feature" version="1.0.0.qualifier">
+      <category name="tychodemo.category"/>
+   </feature>
+   <category-def name="tychodemo.category" label="Tycho Demo Category">
+      <description>
+         Tycho Demo Category
+      </description>
+   </category-def>
+</site>
