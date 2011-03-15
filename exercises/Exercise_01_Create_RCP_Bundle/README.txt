@@ -15,6 +15,12 @@ Exercise 1: Create and build a hello world RCP plugin using tycho
  - Choose "Run a product" and select "tychodemo.bundle.product"
  - You should see a splash screen followed by an empty RCP window with title "Tycho Demo RCP".
    (see expected_rcp_screenshot.png)
+ - Tip: to avoid starting lots of unneeded bundles:
+       - go to the Plug-ins tab of the launch configuration
+       - under "Launch with:", select "Plug-ins selected below only"
+       - uncheck all plugins in the target platform and only check "tychodemo.bundle" from the workspace
+       - press "Add Required Plug-ins"
+   Now only the plugins (transitively) required by tychodemo.bundle will be started.
  
 - Add a maven project file "pom.xml" in the root of the project with contents:
 
