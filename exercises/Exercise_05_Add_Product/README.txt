@@ -14,16 +14,12 @@ Exercise 5: Add a product
    tychodemo.repository
    tychodemo.aggregator 
    
-- As a preparation, make sure the "Eclipse Application" launch configuration from Exercise 1 works:
-  - Run > Run Configurations > Eclipse Application 
+- As a preparation, make sure the "Eclipse Application" launch configuration from Exercise 1 is now a feature-based launch config: 
+  (this is a workaround for PDE bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=340350 )
+  - Run > Run Configurations > Eclipse Application
   - Choose "Run a product" and select "tychodemo.bundle.product"
+  - IMPORTANT: In the "Plug-ins" tab, under "Launch with:", select "features selected below" and check tychodemo.feature only
   - Run it to see if the launch configuration works
-  - Tip: to avoid starting lots of unneeded bundles:
-         - go to the Plug-ins tab of the launch configuration
-         - under "Launch with:", select "Plug-ins selected below only"
-         - uncheck all plugins in the target platform and only check "tychodemo.bundle" from the workspace
-         - press "Add Required Plug-ins"
-    Now only the plugins (transitively) required by tychodemo.bundle will be started.
    
 - In the tychodemo.repository project root folder, create a new .product file:
   - File > New >  Product Configuration
