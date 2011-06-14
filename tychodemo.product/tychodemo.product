@@ -22,9 +22,9 @@
       
    <launcher name="myRCP">
       <solaris/>
-      <linux icon="../../../icons/alt_launcher.xpm"/>
+      <linux icon="icons/alt_launcher.xpm"/>
       <win useIco="true">
-         <ico path="../../../icons/alt_launcher.ico"/>
+         <ico path="icons/alt_launcher.ico"/>
          <bmp/>
       </win>
    </launcher>
