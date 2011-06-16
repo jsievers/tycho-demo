@@ -6,7 +6,7 @@ As a starting point for your convenience, the result of step 1 "Create an RCP bu
   - Added an aggregator POM in the root folder so we can add more modules to the build
   - Extracted common settings to a parent POM from which all modules will inherit
 
-- Import all 3 projects from the zip into an empty eclipse workspace using File > Import > Existing Maven Projects
+- Import all 3 projects from this folder into an empty eclipse workspace using File > Import > Existing Maven Projects
 - Right-click on tychodemo.aggregator > Run As > Maven package.
   The build should succeed and build 3 modules
    

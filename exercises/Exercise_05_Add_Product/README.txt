@@ -3,7 +3,7 @@ Exercise 5: Add a product
 
 
 - [optional if you want to catch up from exercise 4 or reset your workspace]:
-  Import all 6 projects from the zip into an empty eclipse workspace using File > Import > Existing Maven Projects
+  Import all 6 projects from this folder into an empty eclipse workspace using File > Import > Existing Maven Projects
 - Right-click on tychodemo.aggregator > Run As > Maven install.
   The build should succeed and build 6 modules
    
@@ -61,7 +61,7 @@ Exercise 5: Add a product
   <build>
     <plugins>
       <plugin>
-        <groupId>org.sonatype.tycho</groupId>
+        <groupId>org.eclipse.tycho</groupId>
         <artifactId>tycho-p2-director-plugin</artifactId>
         <version>${tycho-version}</version>
         <executions>
@@ -150,12 +150,10 @@ Exercise 5: Add a product
     E.g. for two platforms linux/gtk/x86_64 and win32/win32/x86:
     
       <plugin>
-        <groupId>org.sonatype.tycho</groupId>
+        <groupId>org.eclipse.tycho</groupId>
         <artifactId>target-platform-configuration</artifactId>
         <version>${tycho-version}</version>
         <configuration>
-          <!-- recommended: use p2-based target platform resolver -->
-          <resolver>p2</resolver>
           <!-- configure the p2 target environments for multi-platform build -->
           <environments>
             <environment>

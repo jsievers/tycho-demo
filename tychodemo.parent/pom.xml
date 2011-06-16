@@ -14,7 +14,7 @@
   </prerequisites>
 
   <properties>
-    <tycho-version>0.11.0</tycho-version>
+    <tycho-version>0.12.0</tycho-version>
   </properties>
   <repositories>
     <!-- configure p2 repository to resolve against -->
@@ -36,18 +36,16 @@
     <plugins>
       <plugin>
         <!-- enable tycho build extension -->
-        <groupId>org.sonatype.tycho</groupId>
+        <groupId>org.eclipse.tycho</groupId>
         <artifactId>tycho-maven-plugin</artifactId>
         <version>${tycho-version}</version>
         <extensions>true</extensions>
       </plugin>
       <plugin>
-        <groupId>org.sonatype.tycho</groupId>
+        <groupId>org.eclipse.tycho</groupId>
         <artifactId>target-platform-configuration</artifactId>
         <version>${tycho-version}</version>
         <configuration>
-          <!-- recommended: use p2-based target platform resolver -->
-          <resolver>p2</resolver>
           <!-- configure the p2 target environments for multi-platform build -->
           <environments>
             <environment>
@@ -65,8 +63,8 @@
       </plugin>
       <!-- enable source bundle generation -->
       <plugin>
-        <groupId>org.sonatype.tycho</groupId>
-        <artifactId>maven-osgi-source-plugin</artifactId>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-source-plugin</artifactId>
         <version>${tycho-version}</version>
         <executions>
           <execution>

@@ -3,7 +3,7 @@ Exercise 3: Add a feature
 
 
 - [optional if you want to catch up from exercise 2 or reset your workspace]:
-  Import all 4 projects from the zip into an empty eclipse workspace using File > Import > Existing Maven Projects
+  Import all 4 projects from this folder into an empty eclipse workspace using File > Import > Existing Maven Projects
 - Right-click on tychodemo.aggregator > Run As > Maven package.
   The build should succeed and build 4 modules
    

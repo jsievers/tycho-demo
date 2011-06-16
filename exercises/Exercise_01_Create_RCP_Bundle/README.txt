@@ -40,28 +40,19 @@ Exercise 1: Create and build a hello world RCP plugin using tycho
 - To define the tycho version to be used, add this snippet into <project> :
 
   <properties>
-    <tycho-version>0.11.0-SNAPSHOT</tycho-version>
+    <tycho-version>0.12.0</tycho-version>
   </properties>
 
-- To enable tycho and use the p2 dependency resolver, add this snippet into <project> :
+- To enable tycho, add this snippet into <project> :
 
   <build>
     <plugins>
       <plugin>
         <!-- enable tycho build extension -->
-        <groupId>org.sonatype.tycho</groupId>
+        <groupId>org.eclipse.tycho</groupId>
         <artifactId>tycho-maven-plugin</artifactId>
         <version>${tycho-version}</version>
         <extensions>true</extensions>
-      </plugin>
-      <plugin>
-        <groupId>org.sonatype.tycho</groupId>
-        <artifactId>target-platform-configuration</artifactId>
-        <version>${tycho-version}</version>
-        <configuration>
-          <!-- recommended: use p2-based target platform resolver -->
-          <resolver>p2</resolver>
-        </configuration>
       </plugin>
     </plugins>
   </build>
