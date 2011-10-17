@@ -14,13 +14,6 @@ Exercise 5: Add a product
    tychodemo.repository
    tychodemo.aggregator 
    
-- As a preparation, make sure the "Eclipse Application" launch configuration from Exercise 1 is now a feature-based launch config: 
-  (this is a workaround for PDE bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=340350 )
-  - Run > Run Configurations > Eclipse Application
-  - Choose "Run a product" and select "tychodemo.bundle.product"
-  - IMPORTANT: In the "Plug-ins" tab, under "Launch with:", select "features selected below" and check tychodemo.feature only
-  - Run it to see if the launch configuration works
-   
 - In the tychodemo.repository project root folder, create a new .product file:
   - File > New >  Product Configuration
   - File name: "tychodemo.product"
@@ -44,10 +37,14 @@ Exercise 5: Add a product
     - add feature "tychodemo.feature" :
 
       <feature id="tychodemo.feature" version="1.0.0.qualifier"/>
+
+    - add feature "org.eclipse.rcp" :
       
+      <feature id="org.eclipse.rcp"/>
+
   Note the product is being built as part of the existing packaging type "eclipse-repository".
   This is not intuitive and there will be a dedicated packaging type for p2-updatable 
-  eclipse products in tycho 0.12.0.
+  eclipse products in a later version of tycho.
 
 - Right-click on tychodemo.aggregator > Run As > Maven install.
   Expected result: SUCCESSFUL build.
@@ -77,23 +74,6 @@ Exercise 5: Add a product
     </plugins>
   </build>  
   
-- To work around an issue with the SWT fragments in a multi-platform build,
-  add the SWT fragment of your build platform to tychodemo.feature/feature.xml.
-  E.g. for win32/win32/x86:
-
-   <plugin
-         id="org.eclipse.swt.win32.win32.x86"
-         os="win32"
-         ws="win32"
-         arch="x86"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
-
-  - Make sure to specify the correct os/ws/arch attributes  
-
 - Run 'mvn install' on the aggregator project.
   Expected result: After successful build, you should find an installed product under
   tychodemo.repository/target/products/tychodemo.product/<os>/<ws>/<arch>/
@@ -121,7 +101,6 @@ Exercise 5: Add a product
     tychodemo.repository/target/products/
    
 - Configure the product executable name:
-  ( CAVEAT: this currently does not work for MacOSX, see http://bugs.eclipse.org/313997 )
   Choose a name, e.g. "tychoDemoRCP" in the "Launching" tab of the product editor
   
 - Configure the product root folder:
@@ -143,7 +122,7 @@ Exercise 5: Add a product
 - Customize executable icon: 
   - Copy tychodemo.bundle/icons/ to tychodemo.repository/icons/
   - On the "Launching" tab of the product editor, choose e.g. for win32:
-    "Use single .ico:" -> "../../../icons/alt_launcher.ico"
+    "Use single .ico:" -> "icons/alt_launcher.ico"
     
 - Build the product for multiple platforms:
   - Configure the target platform environments in tychodemo.parent/pom.xml
@@ -164,18 +143,16 @@ Exercise 5: Add a product
             <environment>
               <os>win32</os>
               <ws>win32</ws>
-              <arch>x86</arch>
+              <arch>x86_64</arch>
             </environment>
           </environments>
         </configuration>
       </plugin>    
 
-  - CAVEAT: Add the SWT fragment for linux/gtk/x86_64 to tychodemo.feature/feature.xml (see above)
-      
 - Run 'mvn install' on the aggregator project.
   Expected result: After successful build, you should now find two installed products under
   tychodemo.repository/target/products/tychodemo.product/ :
-  One for linux/gtk/x86_64 and one for win32/win32/x86.
+  One for linux/gtk/x86_64 and one for win32/win32/x86_64.
     
  
  

@@ -2,8 +2,8 @@ Exercise 1: Create and build a hello world RCP plugin using tycho
 =================================================================
 
 - Prerequisites: 
-  - eclipse classic 3.7M5 with m2eclipse and Tycho Project Configurators installed
-  - access to an Eclipse Helios p2 repo (directly via http://download.eclipse.org/releases/helios/ or better, via local mirror)
+  - eclipse classic 3.7 with m2eclipse and Tycho Project Configurators installed
+  - access to an Eclipse Indigo p2 repo (directly via http://download.eclipse.org/releases/indigo/ or better, via local mirror)
 
 - Create a new plugin project with name "tychodemo.bundle".
 - Choose "Create a rich client application" and use the "Hello RCP" template to create a hello-world RCP bundle
@@ -40,7 +40,7 @@ Exercise 1: Create and build a hello world RCP plugin using tycho
 - To define the tycho version to be used, add this snippet into <project> :
 
   <properties>
-    <tycho-version>0.12.0</tycho-version>
+    <tycho-version>0.13.0</tycho-version>
   </properties>
 
 - To enable tycho, add this snippet into <project> :
@@ -57,7 +57,9 @@ Exercise 1: Create and build a hello world RCP plugin using tycho
     </plugins>
   </build>
 
-- To build against the Helios p2 repository, add this snippet in <project>:
+- To build against the Indigo p2 repository, add this snippet in <project>:
+
+TODO use local file:// p2 repo instead?
 
   <repositories>
     <!-- configure p2 repository to resolve against -->
