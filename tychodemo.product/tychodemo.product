@@ -39,6 +39,7 @@
 
    <features>
       <feature id="tychodemo.feature" version="1.0.0.qualifier"/>
+      <feature id="org.eclipse.rcp" />
    </features>
 
    <configurations>

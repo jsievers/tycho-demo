@@ -14,14 +14,14 @@
   </prerequisites>
 
   <properties>
-    <tycho-version>0.12.0</tycho-version>
+    <tycho-version>0.13.0</tycho-version>
   </properties>
   <repositories>
     <!-- configure p2 repository to resolve against -->
     <repository>
-      <id>helios</id>
+      <id>indigo</id>
       <layout>p2</layout>
-      <url>http://download.eclipse.org/releases/helios</url>
+      <url>http://download.eclipse.org/releases/indigo</url>
             <!-- file URL for faster and offline builds -->
       <!-- <url>file:/${basedir}/../../helios-rcp/</url> -->
     </repository>
@@ -56,7 +56,7 @@
             <environment>
               <os>win32</os>
               <ws>win32</ws>
-              <arch>x86</arch>
+              <arch>x86_64</arch>
             </environment>
           </environments>
         </configuration>
