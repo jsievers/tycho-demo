@@ -66,7 +66,7 @@ TODO use local file:// p2 repo instead?
     <repository>
       <id>helios</id>
       <layout>p2</layout>
-      <url>http://localhost:8081/nexus/content/repositories/helios/</url>
+      <url>http://download.eclipse.org/releases/indigo/</url>
     </repository>
   </repositories>
 
