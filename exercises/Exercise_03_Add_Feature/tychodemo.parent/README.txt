@@ -38,9 +38,9 @@ Exercise 3: Add a feature
   Note packaging type "eclipse-feature". 
   Also note POM version == feature version and POM artifactId == feature id.
 
-- Add the feature module to the aggregator pom:
-		<module>tychodemo.feature</module>
+- Add the feature module to the parent pom:
+		<module>../tychodemo.feature</module>
 
-- tychodemo.aggregator > Run As > Maven Install
+- tychodemo.parent > Run As > Maven install
 
   Expected result: SUCCESSFUL build with 5 modules, including tychodemo.feature

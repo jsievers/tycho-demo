@@ -40,11 +40,11 @@ Exercise 4: Add a p2 repository
   
   Note the packaging type "eclipse-repository".
   
-- Add the repository module to tychodemo.aggregator POM:
+- Add the repository module to tychodemo.parent POM:
 
-    <module>tychodemo.repository</module>
+    <module>../tychodemo.repository</module>
 
-- Right-click tychodemo.aggregator > Run As > Maven install
+- Right-click tychodemo.parent > Run As > Maven install
   Expected result: SUCCESSFUL build with tychodemo.repository module.
   A p2 repository in tychodemo.repository/target/repository/ and
   the zipped repository in tychodemo.repository/target/tychodemo.repository.zip

@@ -53,10 +53,10 @@ As a starting point for your convenience, the result of step 1 "Create an RCP bu
 
    Note the packaging type "eclipse-test-plugin" which indicates this bundle or fragment contains tests.
    
-   - Add the module to the aggregator pom.xml:
+   - Add the module to the parent pom.xml:
    
-   		<module>tychodemo.bundle.tests</module>
-   - Right-click aggregator > Run As > Maven Install
+   		<module>../tychodemo.bundle.tests</module>
+   - Right-click tychodemo.parent > Run As > Maven Install
      Expected result: build should fail because of the same test failure we just saw in eclipse 
 
 -------------------------------------------------------

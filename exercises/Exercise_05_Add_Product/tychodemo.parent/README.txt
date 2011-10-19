@@ -18,8 +18,9 @@ Exercise 5: Add a product
 - In the tychodemo.repository project root folder, create a new .product file:
   - File > New >  Product Configuration
   - File name: "tychodemo.product"
-  - Choose "Use a launch configuration" and select the launch configuration from the previous step
-    Note: this will make sure the bundle start levels of the product are configured correctly. 
+  - Choose "Use a launch configuration" and select the launch configuration from Exercise 1.
+    Note: this will make sure the bundle start levels of the product are configured correctly.
+    Otherwise the built product will fail to start.  
     The start levels in the .product file in this example should be:
     
     <configurations>
@@ -43,6 +44,11 @@ Exercise 5: Add a product
       
       <feature id="org.eclipse.rcp"/>
 
+  - CAVEAT: due to bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=359090
+    you have to make sure that there is no <plugins> section in your feature-based
+    product. Right-click tychodemo.product > Open with > Text editor.
+    Delete the <plugins> section if found.
+  
   Note the product is being built as part of the existing packaging type "eclipse-repository".
   This is not intuitive and there will be a dedicated packaging type for p2-updatable 
   eclipse products in a later version of tycho.
