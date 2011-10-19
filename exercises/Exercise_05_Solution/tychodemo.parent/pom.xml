@@ -64,6 +64,13 @@
 		</plugins>
 	</build>
 
+	<modules>
+		<module>../tychodemo.bundle</module>
+		<module>../tychodemo.bundle.tests</module>
+		<module>../tychodemo.feature</module>
+		<module>../tychodemo.repository</module>
+	</modules>
+
 	<profiles>
 		<profile>
 			<!-- as a workaround for TYCHO-520, only build mac binaries on macs -->
@@ -94,4 +101,5 @@
 			</build>
 		</profile>
 	</profiles>
+
 </project>
