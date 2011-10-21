@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>EclipseCon 2011 Tycho Tutorial - Exercise 4</title>
+</head>
+<body>
+<p align="center">
+<a href="../../Exercise_03_Add_Feature/tychodemo.parent/README.html">&lt;Previous Exercise</a> | <a href="../../../README.html">TOC</a> | <a href="../../Exercise_05_Add_Product/tychodemo.parent/README.html">Next Exercise&gt;</a> 
+</p>
+
+<h2>Exercise 4: Add a p2 repository</h2>
+
+In this exercise, we publish the feature and bundle we built in the previous exercises into a p2 repository.<br/>
+A p2 repository is the format in which we publish installations/updates of our RCP application.
+<ol>
+<li>[this step is optional and only needed if you want to catch up from exercise 3 or reset your workspace]:<br/>
+  Select <tt>File > Switch Workspace > Other...</tt>	 and choose folder <a href="../">Exercise_04_Add_P2_Repository</a>.<br/>
+  Import all 4 projects from this folder into the new empty eclipse workspace using <tt>File > Import > Existing Maven Projects</tt>
+  </li>
+<li> Right-click on <tt>tychodemo.parent > Run As > Maven install</tt>
+  The build should succeed and build 4 modules
+   <pre>
+   tychodemo.parent 
+   tychodemo.bundle 
+   tychodemo.bundle.tests
+   tychodemo.feature
+   </pre>
+</li>
+<li>Create a new update site project <tt>tychodemo.repository</tt><br/>
+<tt>File > New > Project > Update Site Project</tt><br/>
+  Note: Make sure the new project root folder is located next to the existing module folders
+        (Uncheck "Use default location" in the project creation wizard and enter location if necessary)
+        </li>
+<li> In <tt>site.xml</tt>, create a new category <tt>tychodemo.category</tt>
+  and add the feature <tt>tychodemo.feature</tt> to it
+  </li>
+<li> Rename <tt>site.xml</tt> to <tt>category.xml</tt>
+</li>
+<li> Add a <tt>pom.xml</tt> file in the update site project root with contents:
+
+<pre>
+  &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+  &lt;project
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;parent&gt;
+      &lt;groupId&gt;tychodemo&lt;/groupId&gt;
+      &lt;artifactId&gt;tychodemo.parent&lt;/artifactId&gt;
+      &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+      &lt;relativePath&gt;../tychodemo.parent/pom.xml&lt;/relativePath&gt;
+    &lt;/parent&gt;
+    &lt;groupId&gt;tychodemo&lt;/groupId&gt;
+    &lt;artifactId&gt;tychodemo.repository&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+    &lt;packaging&gt;eclipse-repository&lt;/packaging&gt;
+  &lt;/project&gt;
+</pre>  
+  Note the packaging type <tt>eclipse-repository</tt> indicating that the build result of this module will be a p2 repository.
+</li>  
+<li>Add the repository module to <tt>modules</tt> section of <tt>tychodemo.parent</tt> POM:
+<pre>
+    &lt;module&gt;../tychodemo.repository&lt;/module&gt;
+</pre>
+</li>
+<li> Right-click <tt>tychodemo.parent > Run As > Maven install</tt><br/>
+  Expected results:
+   <ul>
+   <li><tt>SUCCESSFUL</tt> build including <tt>tychodemo.repository</tt> module.</li>
+   <li>A p2 repository in <a href="../tychodemo.repository/target/repository/"><tt>tychodemo.repository/target/repository/</tt></a> and</li>
+   <li>the zipped repository in <a href="../tychodemo.repository/target/tychodemo.repository.zip"><tt>tychodemo.repository/target/tychodemo.repository.zip</tt></a></li>
+  </ul>
+</li>  
+<li> Test the p2 repository just created:<br/>
+<ul>
+  <li><tt>Help > Install New Software > Add... > Local... </tt></li>
+   <li>Choose your local  <a href="../tychodemo.repository/target/repository/"><tt>tychodemo.repository/target/repository/</tt></a> folder.</li>
+  
+  <li>Now the demo category and feature created in the previous step should show up in the
+  p2 installer UI.</li>
+  </ul>
+</li>
+ </ol>
+
+<p align="center">
+<a href="../../Exercise_03_Add_Feature/tychodemo.parent/README.html">&lt;Previous Exercise</a> | <a href="../../../README.html">TOC</a> | <a href="../../Exercise_05_Add_Product/tychodemo.parent/README.html">Next Exercise&gt;</a> 
+</p>
+
+ </body>
+</html>
+  

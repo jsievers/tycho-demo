@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>EclipseCon 2011 Tycho Tutorial - Exercise 1</title>
+</head>
+<body>
+<p align="center">
+ <a href="../../README.html">TOC</a> | <a href="../Exercise_02_Add_Test_Fragment/tychodemo.parent/README.html">Next Exercise&gt;</a> 
+</p>
+<h2>Exercise 1: Create and build a "Hello World" RCP plugin using Tycho</h2>
+
+In this exercise, we will use the project templates shipped with eclipse to create a simple "Hello World" Rich Client Platform plugin.<br/>
+We will compile and run the plugin from the IDE and then show how to build it with tycho by simply adding a Maven <tt>pom.xml</tt> project file.
+<ol>
+<li>Create a new plugin project with name <tt>tychodemo.bundle</tt>
+<ul>
+<li><tt>File > New > Project > Plugin Project</tt></li>
+<li>Choose "Create a rich client application" and use the "Hello RCP" template to create a hello-world RCP bundle</li>
+<li>Enter window title "Tycho Demo RCP"</li>
+<li>Check "Add branding" (Note: we will need this later when building a product)</li>
+</ul>
+<li>Run the application to check if it works:
+<ul>
+ <li>Create a new "Eclipse Application" launch configuration</li>
+ <li>Choose "Run a product" and select <tt>tychodemo.bundle.product</tt></li>
+ <li>You should see a splash screen followed by an empty RCP window with title "Tycho Demo RCP".
+   (see expected_rcp_screenshot.png)</li>
+ <li>Tip: to avoid starting lots of unneeded bundles slowing down startup:
+      <ul>
+	   <li>go to the Plug-ins tab of the launch configuration</li>
+       <li>under "Launch with:", select "Plug-ins selected below only"</li>
+       <li>uncheck all plugins in the target platform and only check "tychodemo.bundle" from the workspace</li>
+       <li>press "Add Required Plug-ins"</li>
+	   </ul>
+   Now only the plugins (transitively) required by <tt>tychodemo.bundle</tt> will be started.
+ </li>
+ </ul>
+ <li>Add a maven project file <tt>pom.xml</tt> in the root of the project with contents:
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  
+  &lt;groupId&gt;tychodemo&lt;/groupId&gt;
+  &lt;artifactId&gt;tychodemo.bundle&lt;/artifactId&gt;
+  &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+  
+  &lt;packaging&gt;eclipse-plugin&lt;/packaging&gt;
+&lt;/project&gt;
+</pre>
+</li>
+ Note that <tt>MANIFEST/Bundle-SymbolicName == POM/artifactId</tt> and <tt>MANIFEST/&lt;Bundle-Version&gt;.qualifier == POM/&lt;version&gt;-SNAPSHOT</tt>
+
+<li> To define the tycho version to be used, add this snippet into <tt>&lt;project&gt;</tt> :
+
+<pre>
+  &lt;properties&gt;
+    &lt;tycho-version&gt;0.13.0&lt;/tycho-version&gt;
+  &lt;/properties&gt;
+</pre>
+</li>
+<li> To enable tycho, add this snippet into <tt>&lt;project&gt;</tt> :
+
+<pre>
+  &lt;build&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;!-- enable tycho build extension --&gt;
+        &lt;groupId&gt;org.eclipse.tycho&lt;/groupId&gt;
+        &lt;artifactId&gt;tycho-maven-plugin&lt;/artifactId&gt;
+        &lt;version&gt;${tycho-version}&lt;/version&gt;
+        &lt;extensions&gt;true&lt;/extensions&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/build&gt;
+</pre>
+</li>
+
+<li> To build against the Indigo p2 repository, add this snippet in <tt>&lt;project&gt;</tt>:
+
+<pre>
+  &lt;repositories&gt;
+    &lt;!-- configure p2 repository to resolve against --&gt;
+    &lt;repository&gt;
+      &lt;id&gt;helios&lt;/id&gt;
+      &lt;layout&gt;p2&lt;/layout&gt;
+      &lt;url&gt;http://download.eclipse.org/releases/indigo/&lt;/url&gt;
+    &lt;/repository&gt;
+  &lt;/repositories&gt;
+</pre>
+NOTE: Should the Indigo p2 repository be too slow/unavailable, you can use a local p2 repository 
+        as a fallback.<br/> In this case, enter the file URL to the folder repository/ which 
+		you copied from the USB stick during setup:
+</li>
+
+		<pre>
+  &lt;repositories&gt;
+    &lt;!-- resolve against local p2 repository --&gt;
+    &lt;repository&gt;
+      &lt;id&gt;helios&lt;/id&gt;
+      &lt;layout&gt;p2&lt;/layout&gt;
+      &lt;url&gt;file:/absolute/path/to/repository-folder/from/usb-stick/&lt;/url&gt;
+    &lt;/repository&gt;
+  &lt;/repositories&gt;
+		</pre>
+		
+
+<li> Right-click the project <tt>Run As > Maven install</tt> (or run <tt>mvn install</tt> on the command prompt)</li>
+
+<li> expected result is a <tt>SUCCESSFUL</tt> build with the bundle jar 
+  <tt>tychodemo.bundle-1.0.0-SNAPSHOT.jar</tt> in the <tt>target/</tt> folder of the project </li>
+</ol>
+
+<p align="center">
+ <a href="../../README.html">TOC</a> | <a href="../Exercise_02_Add_Test_Fragment/tychodemo.parent/README.html">Next Exercise&gt;</a> 
+</p>
+
+</body>
+</html>

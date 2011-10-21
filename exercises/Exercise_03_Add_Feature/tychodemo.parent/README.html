@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>EclipseCon 2011 Tycho Tutorial - Exercise 3</title>
+</head>
+<body>
+<p align="center">
+<a href="../../Exercise_02_Add_Test_Fragment/tychodemo.parent/README.html">&lt;Previous Exercise</a> | <a href="../../../README.html">TOC</a> | <a href="../../Exercise_04_Add_P2_Repository/tychodemo.parent/README.html">Next Exercise&gt;</a> 
+</p>
+
+<h2>Exercise 3: Add a feature</h2>
+
+In this exercise, we create a feature which groups the plugin(s) we build to units which should be installed together.
+A feature is needed in order to include content into a p2 repository.<br/>
+<br/>
+
+<ol>
+<li>[this step is optional; it is only needed if you want to catch up from the <a href="../../Exercise_02_Add_Test_Fragment/tychodemo.parent/README.html">previous exercise</a> or reset your workspace]:<br/>
+  Select <tt>File > Switch Workspace > Other...</tt> and choose folder <a href="../">Exercise_03_Add_Feature</a>.<br/>
+  Import all 3 projects from this folder into the new empty eclipse workspace using <tt>File &gt; Import &gt; Existing Maven Projects</tt></li>
+<li> Right-click on <tt>tychodemo.parent, Run As > Maven install</tt>
+  The build should succeed and build 3 modules
+   <pre>
+   tychodemo.parent 
+   tychodemo.bundle 
+   tychodemo.bundle.tests
+   </pre>
+   </li>
+
+<li>Create a new feature project <tt>tychodemo.feature</tt> and add <tt>tychodemo.bundle</tt> as included plugin:<br/>
+<tt>File > New > Project > Feature Project</tt><br/>
+
+  Note: Make sure the new project root folder is located next to the existing module folders
+        (Uncheck "Use default location" in the project creation wizard and enter location if necessary)
+</li>
+<li> Add a maven project file <tt>pom.xml</tt> to the feature project root with the following content:
+<pre>
+	&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+	&lt;project
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+		&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+		&lt;parent&gt;
+			&lt;groupId&gt;tychodemo&lt;/groupId&gt;
+			&lt;artifactId&gt;tychodemo.parent&lt;/artifactId&gt;
+			&lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+			&lt;relativePath&gt;../tychodemo.parent/pom.xml&lt;/relativePath&gt;
+		&lt;/parent&gt;
+		&lt;groupId&gt;tychodemo&lt;/groupId&gt;
+		&lt;artifactId&gt;tychodemo.feature&lt;/artifactId&gt;
+		&lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+		&lt;packaging&gt;eclipse-feature&lt;/packaging&gt;
+	&lt;/project&gt;
+</pre>
+  Note packaging type <tt>eclipse-feature</tt>. 
+  Also note <tt>POM version == feature version</tt> and <tt>POM artifactId == feature id</tt>.
+</li>
+<li> Add the feature module to the module section of the parent pom:
+       <pre>
+		&lt;module&gt;../tychodemo.feature&lt;/module&gt;
+	   </pre>
+</li>
+<li> <tt>tychodemo.parent > Run As > Maven install</tt>
+
+  Expected result: SUCCESSFUL build with 4 modules, including <tt>tychodemo.feature</tt>
+</li>
+</ol>
+  
+<p align="center">
+<a href="../../Exercise_02_Add_Test_Fragment/tychodemo.parent/README.html">&lt;Previous Exercise</a> | <a href="../../../README.html">TOC</a> | <a href="../../Exercise_04_Add_P2_Repository/tychodemo.parent/README.html">Next Exercise&gt;</a> 
+</p>
+
+</body>
+</html>  
+

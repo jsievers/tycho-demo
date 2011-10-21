@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>EclipseCon 2011 Tycho Tutorial - Exercise 2</title>
+</head>
+<body>
+<p align="center">
+<a href="../../Exercise_01_Create_RCP_Bundle/README.html">&lt;Previous Exercise</a> | <a href="../../../README.html">TOC</a> | <a href="../../Exercise_03_Add_Feature/tychodemo.parent/README.html">Next Exercise&gt;</a> 
+</p>
+
+<h2>Exercise 2: Add a test fragment with a simple JUnit test</h2>
+
+In this exercise, we will add a simple JUnit test in a fragment to the tychodemo.bundle.<br/>
+We will run the test from eclipse as a JUnit plugin test and then show how the test can 
+be built and run by Tycho simly by adding a Maven project file <tt>pom.xml</tt>.<br/>
+A failed test will also fail the headless build.<br/>
+<br/>
+
+As a starting point for your convenience, the result of step 1 <a href="../../Exercise_01_Create_RCP_Bundle/README.html">Create an RCP bundle</a> has been refactored:<br/>
+Common settings have been extracted to a parent POM from which all modules will inherit and which defines the reactor modules.<br/>
+
+<ol>
+<li> Select <tt>File > Switch Workspace > Other...</tt> and choose <a href="../">folder Exercise_02_Add_Test_Fragment</a>.</li>
+<li> Import the 2 projects from this folder into the new empty eclipse workspace using <tt>File > Import > Existing Maven Projects</tt></li>
+<li>Right-click on tychodemo.parent, <tt>Run As > Maven install</tt><br/>
+  The build should succeed and build 2 modules
+   <pre>
+   tychodemo.parent 
+   tychodemo.bundle 
+   </pre>
+</li>
+<li> Create a new fragment project <tt>tychodemo.bundle.tests</tt> with fragment host <tt>tychodemo.bundle</tt>:<br/>
+     <tt>File > New > Project > Fragment Project</tt><br/>
+  Notes: <ul>
+            <li>Make sure the new project root folder is located next to the existing modules
+           (Uncheck "Use default location" in the project creation wizard and enter location if necessary)
+		   </li>
+            <li>As opposed to classic maven projects, tests are always in a separate module
+           because otherwise we would pollute productive code with test-scoped dependencies in MANIFEST. <br/>
+           We use a fragment because: 
+		   <ol>
+            <li> otherwise we would have to export packages of classes under test in MANIFEST</li>
+            <li>we want to be able to test package-private members</li>
+			</ol>
+			</li>
+		</ul>
+</li>
+<li> In the fragment project, create a new JUnit test case <tt>tychodemo.SimpleTest</tt>
+  <ul>
+   <li><tt>File > New > Other > JUnit Test Case</tt></li>
+   <li>choose <tt>tychodemo.bundle.ApplicationWorkbenchAdvisor</tt> as class under test</li>
+   <li>choose <tt>getInitialWindowPerspectiveId()</tt> as test method for which a stub will be created</li>
+  </ul>
+</li>
+<li> Run the test: Right-click, <tt>Run As > JUnit Plugin Test</tt>
+  <ul>
+  <li> expected result: the test should fail with <tt>"java.lang.AssertionError: Not yet implemented"</tt></li>
+  <li>Note: make sure that both <tt>tychodemo.bundle</tt> as well as <tt>tychodemo.bundle.tests</tt> are active 
+          in the "Plugins" tab of the launch configuration
+          (Use "Launch with: Plug-ins selected below only")</li>
+  </ul>
+</li>
+<li> Add the fragment module to the reactor and run the build:
+  <ul>
+  <li>Add a pom.xml file to the root of the fragment project with content:
+  <pre>
+	&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+	&lt;project
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+		xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+		&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+		&lt;parent&gt;
+			&lt;groupId&gt;tychodemo&lt;/groupId&gt;
+			&lt;artifactId&gt;tychodemo.parent&lt;/artifactId&gt;
+			&lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+			&lt;relativePath&gt;../tychodemo.parent/pom.xml&lt;/relativePath&gt;
+		&lt;/parent&gt;
+		&lt;groupId&gt;tychodemo&lt;/groupId&gt;
+		&lt;artifactId&gt;tychodemo.bundle.tests&lt;/artifactId&gt;
+		&lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+		&lt;packaging&gt;eclipse-test-plugin&lt;/packaging&gt;
+	&lt;/project&gt;  
+</pre>
+	
+   Note the packaging type <tt>eclipse-test-plugin</tt> which indicates this bundle or fragment contains tests which should be executed during build.
+   </li>
+   </ul>
+</li>
+   
+   <li>Add the module to <tt>&lt;modules&gt;</tt> section of the parent pom.xml:
+     <pre>
+   		&lt;module&gt;../tychodemo.bundle.tests&lt;/module&gt;
+		</pre>
+		</li>
+   <li> Right-click <tt>tychodemo.parent</tt>, <tt> Run As > Maven install</tt><br/>
+     Expected result: build should fail because of the same test failure we just saw in eclipse:
+<pre>
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running tychodemo.SimpleTest
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.016 sec &lt;&lt;&lt; FAILURE!
+testGetInitialWindowPerspectiveId(tychodemo.SimpleTest)  Time elapsed: 0 sec  &lt;&lt;&lt; FAILURE!
+</pre>
+</li>
+   
+<li> Implement the test:
+  <ul>
+   <li>assert that <tt>tychodemo.bundle.perspective</tt> is the return value of 
+    <tt>tychodemo.bundle.ApplicationWorkbenchAdvisor.getInitialWindowPerspectiveId()</tt></li>
+    <li>test should now succeed when executed in eclipse, <tt>mvn install</tt> should also succeed</li>
+  </ul>
+</li>
+</ol>  
+
+<p align="center">
+<a href="../../Exercise_01_Create_RCP_Bundle/README.html">&lt;Previous Exercise</a> | <a href="../../../README.html">TOC</a> | <a href="../../Exercise_03_Add_Feature/tychodemo.parent/README.html">Next Exercise&gt;</a> 
+</p>
+
+</body>
+</html>  
+
+
+
+
+
+
+
