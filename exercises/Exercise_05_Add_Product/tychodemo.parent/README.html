@@ -31,7 +31,7 @@
    
 <li> In the <tt>tychodemo.repository</tt> project root folder, create a new .product file:
   <ol>
-  <li> File > New >  Product Configuration<br/>
+  <li> File > New > Other > Plug-in Development > Product Configuration<br/>
   <img src="../resources/new_product.png"/>
   </li>
   <li> File name: "tychodemo.product"</li>
@@ -74,11 +74,13 @@
 	  </ol>
   </li>
   <li> CAVEAT: due to a <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=359090">bug</a> 
-    you have to make sure that there is no lt;plugins&gt; section in your feature-based
+    you have to make sure that there is no &lt;plugins&gt; section in your feature-based
     product. Right-click <tt>tychodemo.product > Open with > Text editor</tt>
     Delete the &lt;plugins&gt; section if found.
 	<br/>
-  <img src="../resources/product_remove_plugins.png"/>
+  <img src="../resources/product_remove_plugins.png"/><br/>
+  Even if the build succeeds, look out for messages like this in your build log:<br/>
+  <img src="../resources/product_mixed_problem.png"/>
   </li>
   <li>Note the product is being built as part of the existing packaging type "eclipse-repository".
   This is not intuitive and there will be a dedicated packaging type for p2-updatable 
