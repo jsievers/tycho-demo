@@ -20,10 +20,11 @@ We will compile and run the plugin from the IDE and then show how to build it wi
 <li>Check "Add branding" (Note: we will need this later when building a product)</li>
 <table>
 <tr>
+<td valign="top"><img src ="resources/create_plugin_0.png" /></td>
 <td valign="top"><img src ="resources/create_plugin_1.png" /></td>
-<td valign="top"><img src ="resources/create_plugin_2.png" /></td>
 </tr>
 <tr>
+<td valign="top"><img src ="resources/create_plugin_2.png" /></td>
 <td valign="top"><img src ="resources/create_plugin_3.png" /></td>
 </tr>
 <table>
@@ -39,7 +40,7 @@ We will compile and run the plugin from the IDE and then show how to build it wi
   <img src="resources/rcp_screen.png"/>
 
    </li>
- <li>Tip: to avoid starting lots of unneeded bundles slowing down startup:
+ <li>Hint: to avoid starting lots of unneeded bundles slowing down startup:
       <ul>
 	   <li>go to the Plug-ins tab of the launch configuration</li>
        <li>under "Launch with:", select "Plug-ins selected below only"</li>
@@ -103,8 +104,12 @@ We will compile and run the plugin from the IDE and then show how to build it wi
     &lt;/repository&gt;
   &lt;/repositories&gt;
 </pre>
-NOTE: Should the Indigo p2 repository be too slow/unavailable, you can use a local p2 repository 
-        as a fallback.<br/> In this case, enter the file URL to the folder repository/ which 
+NOTE: Should the Indigo p2 repository be too slow/unavailable, you may get an error like <br/>
+<img src="resources/indigo_failed.png"/>
+<br/>
+
+
+        In this case, you can use a local p2 repository as a fallback.<br/> Enter the file URL to the folder <tt>tutorial/repository/</tt> which 
 		you copied from the USB stick during setup:
 </li>
 
@@ -114,7 +119,7 @@ NOTE: Should the Indigo p2 repository be too slow/unavailable, you can use a loc
     &lt;repository&gt;
       &lt;id&gt;indigo_local&lt;/id&gt;
       &lt;layout&gt;p2&lt;/layout&gt;
-      &lt;url&gt;file:/absolute/path/to/repository-folder/from/usb-stick/&lt;/url&gt;
+      &lt;url&gt;file:/absolute/path/to/repository-folder/copied/from/usb-stick/&lt;/url&gt;
     &lt;/repository&gt;
   &lt;/repositories&gt;
 		</pre>
