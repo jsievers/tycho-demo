@@ -21,7 +21,7 @@ Common settings have been extracted to a parent POM <a href="pom.xml"><tt>tychod
 
 <ol>
 <li> Select <tt>File > Switch Workspace > Other...</tt> and choose <a href="../">folder Exercise_02_Add_Test_Fragment</a>.</li>
-<li> Import the 2 projects from this folder into the new empty eclipse workspace using <tt>File > Import > Existing Maven Projects</tt><br/>
+<li> Import the 2 projects from this folder into the new empty eclipse workspace using <tt>File > Import > Maven > Existing Maven Projects</tt><br/>
 <img src="../resources/import.png"/>
 </li>
 <li>Right-click on tychodemo.parent, <tt>Run As > Maven install</tt><br/>
@@ -29,7 +29,8 @@ The build should succeed and build 2 modules:<br/>
 <img src="../resources/build_success.png"/>
 </li>
 <li> Create a new fragment project <tt>tychodemo.bundle.tests</tt> with fragment host <tt>tychodemo.bundle</tt>:<br/>
-     <tt>File > New > Project > Fragment Project</tt><br/>
+     <tt>File > New > Project > Plug-in Development > Fragment Project</tt><br/>
+<img src="../resources/new_fragment_0.png"/>
 <img src="../resources/new_fragment.png"/>
 <img src="../resources/fragment_host.png"/>
 <br/>
