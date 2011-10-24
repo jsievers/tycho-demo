@@ -18,13 +18,27 @@ We will compile and run the plugin from the IDE and then show how to build it wi
 <li>Choose "Create a rich client application" and use the "Hello RCP" template to create a hello-world RCP bundle</li>
 <li>Enter window title "Tycho Demo RCP"</li>
 <li>Check "Add branding" (Note: we will need this later when building a product)</li>
+<table>
+<tr>
+<td valign="top"><img src ="resources/create_plugin_1.png" /></td>
+<td valign="top"><img src ="resources/create_plugin_2.png" /></td>
+</tr>
+<tr>
+<td valign="top"><img src ="resources/create_plugin_3.png" /></td>
+</tr>
+<table>
 </ul>
 <li>Run the application to check if it works:
 <ul>
- <li>Create a new "Eclipse Application" launch configuration</li>
- <li>Choose "Run a product" and select <tt>tychodemo.bundle.product</tt></li>
- <li>You should see a splash screen followed by an empty RCP window with title "Tycho Demo RCP".
-   (see expected_rcp_screenshot.png)</li>
+ <li>Create a new "Eclipse Application" launch configuration using <tt>Run > Run Configurations... > Eclipse Application > New</tt></li>
+ <li>Choose "Run a product" and select <tt>tychodemo.bundle.product</tt><br/>
+ <img src="resources/run_configuration.png"/>
+ </li>
+ 
+ <li>You should see a splash screen followed by an empty RCP window with title "Tycho Demo RCP".<br/>
+  <img src="resources/rcp_screen.png"/>
+
+   </li>
  <li>Tip: to avoid starting lots of unneeded bundles slowing down startup:
       <ul>
 	   <li>go to the Plug-ins tab of the launch configuration</li>
@@ -35,7 +49,7 @@ We will compile and run the plugin from the IDE and then show how to build it wi
    Now only the plugins (transitively) required by <tt>tychodemo.bundle</tt> will be started.
  </li>
  </ul>
- <li>Add a maven project file <tt>pom.xml</tt> in the root of the project with contents:
+ <li>Add a maven project file <tt>pom.xml</tt> in the root of the project using <tt>File > New > File > pom.xml</tt> and paste the following content:
 <pre>
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;project
@@ -83,7 +97,7 @@ We will compile and run the plugin from the IDE and then show how to build it wi
   &lt;repositories&gt;
     &lt;!-- configure p2 repository to resolve against --&gt;
     &lt;repository&gt;
-      &lt;id&gt;helios&lt;/id&gt;
+      &lt;id&gt;indigo&lt;/id&gt;
       &lt;layout&gt;p2&lt;/layout&gt;
       &lt;url&gt;http://download.eclipse.org/releases/indigo/&lt;/url&gt;
     &lt;/repository&gt;
@@ -98,7 +112,7 @@ NOTE: Should the Indigo p2 repository be too slow/unavailable, you can use a loc
   &lt;repositories&gt;
     &lt;!-- resolve against local p2 repository --&gt;
     &lt;repository&gt;
-      &lt;id&gt;helios&lt;/id&gt;
+      &lt;id&gt;indigo_local&lt;/id&gt;
       &lt;layout&gt;p2&lt;/layout&gt;
       &lt;url&gt;file:/absolute/path/to/repository-folder/from/usb-stick/&lt;/url&gt;
     &lt;/repository&gt;
@@ -106,10 +120,14 @@ NOTE: Should the Indigo p2 repository be too slow/unavailable, you can use a loc
 		</pre>
 		
 
-<li> Right-click the project <tt>Run As > Maven install</tt> (or run <tt>mvn install</tt> on the command prompt)</li>
+<li> Right-click pom.xml <tt>Run As > Maven install</tt> (or run <tt>mvn install</tt> on the command prompt)<br/>
+<img src="resources/run_maven_install.png"/>
+</li>
 
 <li> expected result is a <tt>SUCCESSFUL</tt> build with the bundle jar 
-  <tt>tychodemo.bundle-1.0.0-SNAPSHOT.jar</tt> in the <tt>target/</tt> folder of the project </li>
+  <tt>tychodemo.bundle-1.0.0-SNAPSHOT.jar</tt> in the <tt>target/</tt> folder of the project <br/>
+<img src="resources/build_success.png"/>
+  </li>
 </ol>
 
 <p align="center">

@@ -30,11 +30,19 @@ A p2 repository is the format in which we publish installations/updates of our R
 <tt>File > New > Project > Update Site Project</tt><br/>
   Note: Make sure the new project root folder is located next to the existing module folders
         (Uncheck "Use default location" in the project creation wizard and enter location if necessary)
+		<br/>
+		<img src="../resources/new_updatesite.png"/><br/>
+		<img src="../resources/new_updatesite_name.png"/>
         </li>
 <li> In <tt>site.xml</tt>, create a new category <tt>tychodemo.category</tt>
-  and add the feature <tt>tychodemo.feature</tt> to it
+  and add the feature <tt>tychodemo.feature</tt> to it:<br/>
+  		<img src="../resources/new_category.png"/><br/>
+  		<img src="../resources/add_feature.png"/><br/>
+
   </li>
-<li> Rename <tt>site.xml</tt> to <tt>category.xml</tt>
+<li> Rename <tt>site.xml</tt> to <tt>category.xml</tt> using Right-click <tt>Refactor > Rename...</tt><br/>
+  		<img src="../resources/rename.png"/>
+
 </li>
 <li> Add a <tt>pom.xml</tt> file in the update site project root with contents:
 
@@ -69,6 +77,8 @@ A p2 repository is the format in which we publish installations/updates of our R
    <li>A p2 repository in <a href="../tychodemo.repository/target/repository/"><tt>tychodemo.repository/target/repository/</tt></a> and</li>
    <li>the zipped repository in <a href="../tychodemo.repository/target/tychodemo.repository.zip"><tt>tychodemo.repository/target/tychodemo.repository.zip</tt></a></li>
   </ul>
+  		<img src="../resources/build_success.png"/>
+  
 </li>  
 <li> Test the p2 repository just created:<br/>
 <ul>
@@ -76,8 +86,9 @@ A p2 repository is the format in which we publish installations/updates of our R
    <li>Choose your local  <a href="../tychodemo.repository/target/repository/"><tt>tychodemo.repository/target/repository/</tt></a> folder.</li>
   
   <li>Now the demo category and feature created in the previous step should show up in the
-  p2 installer UI.</li>
+  p2 installer UI:</li>
   </ul>
+  		<img src="../resources/test_p2_repo.png"/>
 </li>
  </ol>
 

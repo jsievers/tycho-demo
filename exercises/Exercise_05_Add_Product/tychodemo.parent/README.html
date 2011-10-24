@@ -31,9 +31,11 @@
    
 <li> In the <tt>tychodemo.repository</tt> project root folder, create a new .product file:
   <ol>
-  <li> File > New >  Product Configuration</li>
+  <li> File > New >  Product Configuration<br/>
+  <img src="../resources/new_product.png"/>
+  </li>
   <li> File name: "tychodemo.product"</li>
-  <li> Choose "Use a launch configuration" and select the launch configuration from Exercise 1.
+  <li> Choose "Use a launch configuration" and select the launch configuration from Exercise 1.<br/>
     Note: this will make sure the bundle start levels of the product are configured correctly.
     Otherwise the built product will fail to start.  
     The start levels in the .product file in this example should be:
@@ -44,7 +46,8 @@
       &lt;plugin id="org.eclipse.osgi" autoStart="true" startLevel="-1" /&gt;
     &lt;/configurations&gt;
 	</pre>
-    </li>
+<br/>
+  <img src="../resources/new_product_2.png"/>    </li>
   <li> In the "Overview" tab:
   <ol>
     <li> enter product ID "tychodemo.product"</li>
@@ -52,6 +55,8 @@
     <li> Under "Product:", select "tychodemo.bundle.product"</li>
     <li> Under "Application:", select "tychodemo.bundle.application"</li>
 	</ol>
+	<br/>
+  <img src="../resources/product_overview.png"/>
     </li>
   <li> In the "Dependencies" tab:
     <ol>
@@ -64,16 +69,20 @@
     <pre>  
       &lt;feature id="org.eclipse.rcp"/&gt;
 	  </pre>
+	<br/>
+  <img src="../resources/product_dependencies.png"/>
 	  </ol>
   </li>
   <li> CAVEAT: due to a <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=359090">bug</a> 
     you have to make sure that there is no lt;plugins&gt; section in your feature-based
     product. Right-click <tt>tychodemo.product > Open with > Text editor</tt>
     Delete the &lt;plugins&gt; section if found.
+	<br/>
+  <img src="../resources/product_remove_plugins.png"/>
   </li>
   <li>Note the product is being built as part of the existing packaging type "eclipse-repository".
   This is not intuitive and there will be a dedicated packaging type for p2-updatable 
-  eclipse products in a later version of tycho.
+  eclipse products in a <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=348586">later version of tycho</a>.
   </li>
   </ol>
 </li>
@@ -83,6 +92,8 @@
   In tychodemo.repository/target/repository, we have published the product metadata.
   E.g. you should now find the zipped eclipse launcher binaries in
   tychodemo.repository/target/repository/binary/
+	<br/>
+  <img src="../resources/product_published.png"/>
 </li>
   
 <li> Install the product:<br/>
@@ -112,14 +123,18 @@
 
 <li> Run <tt>mvn install</tt> on the parent project.<br/>
   Expected result: After successful build, you should find an installed product under
-  tychodemo.repository/target/products/tychodemo.product/&lt;os&gt;/&lt;ws&gt;/&lt;arch&gt;/
+  tychodemo.repository/target/products/tychodemo.product/&lt;os&gt;/&lt;ws&gt;/&lt;arch&gt;/ <br/>
+  <img src="../resources/product_materialized.png"/>
+
 </li>
   
 <li> Run the product executable.<br/>
-  Expected result: The "Tycho Demo RCP" screen should show up. 
+  Expected result: The "Tycho Demo RCP" screen should show up. <br/>
+  <img src="../resources/rcp_screenshot.png"/>
 </li>
 </ol>
-
+<br/>
+<b>Congratulations! By now you have finished the Tycho tutorial</b>
 
 <hr/>
 
@@ -128,7 +143,7 @@
 
 <ol>
 <li> Create a product zip:
-   <ol>
+   <ul>
   <li> Add the following snippet to the executions section of tycho-p2-director-plugin in 
     tychodemo.repository/pom.xml:
    <pre>
@@ -142,11 +157,18 @@
    </pre>          
    </li>
     <li> Expected result: after successful build, you should find a product zip under 
-    tychodemo.repository/target/products/</li>
+    tychodemo.repository/target/products/
+  <br/>
+    <img src="../resources/product_zip.png"/>
+	</li>
+	</ul>
 </li>
    
 <li> Configure the product executable name:<br/>
   Choose a name, e.g. "tychoDemoRCP" in the "Launching" tab of the product editor
+  <br/>
+    <img src="../resources/product_launcher_name.png"/>
+
 </li>
   
 <li> Configure the product root folder:<br/>
@@ -162,10 +184,13 @@
           &lt;/products&gt;
         &lt;/configuration&gt;
 
-		</pre>
+		</pre><br/>
+  <img src="../resources/product_custom_rootfolder.png"/>
 </li>		
 <li> Configure the splash screen:<br/>
   On the "Splash" tab of the product editor, configure "Plugin:" "tychodemo.bundle"
+  <br/>
+  <img src="../resources/product_splash.png"/>
 </li>  
 <li> Customize executable icon:<br/>
   <ol> 
@@ -173,6 +198,11 @@
     <li>On the "Launching" tab of the product editor, choose e.g. for win32:
     "Use single .ico:" -> "icons/alt_launcher.ico"</li>
 	</ol>
+	<br/>
+    <img src="../resources/product_icon.png"/>
+	<br/>
+    <img src="../resources/product_icon_result.png"/>
+	
 </li>    
 <li> Build the product for multiple platforms:<br/>
   - Configure the target platform environments in tychodemo.parent/pom.xml
@@ -207,6 +237,8 @@
   tychodemo.repository/target/products/tychodemo.product/ :
   One for linux/gtk/x86_64 and one for win32/win32/x86_64.
 </li>  
+<br/>
+    <img src="../resources/product_multi_platform.png"/>
  </ol>
 
 <p align="center">
