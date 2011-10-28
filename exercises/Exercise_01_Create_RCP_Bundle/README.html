@@ -123,7 +123,8 @@ NOTE: Should the Indigo p2 repository be too slow/unavailable, you may get an er
     &lt;/repository&gt;
   &lt;/repositories&gt;
 		</pre>
-		
+  Should <tt><a href="http://repo1.maven.org">Maven Central (http://repo1.maven.org)</a></tt> be too slow or unavailable, you can use a pre-filled local maven repository as fallback.<br/>
+  In this case, copy the content of folder <tt>tutorial/maven_repository</tt> to <tt>${user.home}/.m2/repository</tt>.
 
 <li> Right-click pom.xml <tt>Run As > Maven install</tt> (or run <tt>mvn install</tt> on the command prompt)<br/>
 <img src="resources/run_maven_install.png"/>
