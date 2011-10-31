@@ -13,9 +13,15 @@
 
 <h2>Exercise 5: Add a product</h2>
 
-<ol>
-<li> [this step is optional and only needed if you want to catch up from exercise 4 or reset your workspace]:<br/>
-  Select <tt>File > Switch Workspace > Other...</tt> and choose folder Exercise_05_Add_Product.<br/>
+In this exercise, we define a product which bundles all artifacts needed for our RCP application into 
+an executable, self-contained RCP application including native launcher, branding etc.
+
+<h3>Recovery option</h3>
+
+This section is optional and only needed if you want to catch up from exercise 4 or reset your workspace.
+
+<ul>
+<li>Select <tt>File > Switch Workspace > Other...</tt> and choose folder Exercise_05_Add_Product.<br/>
   Import all 5 projects from this folder into the new empty eclipse workspace using <tt>File > Import > Existing Maven Projects</tt>
 </li>
 
@@ -30,7 +36,10 @@
    tychodemo.repository
    </pre>
 </li>
-   
+</ul>   
+
+<h3>Creating a product configuration file</h3>
+<ol>
 <li> In the <tt>tychodemo.repository</tt> project root folder, create a new .product file:
   <ol>
   <li> File > New > Other > Plug-in Development > Product Configuration<br/>

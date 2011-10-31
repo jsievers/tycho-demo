@@ -14,9 +14,12 @@ In this exercise, we create a feature which groups the plugin(s) we build to uni
 A feature is needed in order to include content into a p2 repository.<br/>
 <br/>
 
-<ol>
-<li>[this step is optional; it is only needed if you want to catch up from the <a href="../../Exercise_02_Add_Test_Fragment/tychodemo.parent/README.html">previous exercise</a> or reset your workspace]:<br/>
-  Select <tt>File > Switch Workspace > Other...</tt> and choose folder <a href="../">Exercise_03_Add_Feature</a>.<br/>
+<h3>Recovery option</h3>
+
+This section is optional and only needed if you want to catch up from exercise 2 or reset your workspace.
+
+<ul>
+<li>Select <tt>File > Switch Workspace > Other...</tt> and choose folder <a href="../">Exercise_03_Add_Feature</a>.<br/>
   Import all 3 projects from this folder into the new empty eclipse workspace using <tt>File &gt; Import &gt; Existing Maven Projects</tt></li>
 <li> Right-click on <tt>tychodemo.parent, Run As > Maven install</tt>
   The build should succeed and build 3 modules
@@ -26,7 +29,10 @@ A feature is needed in order to include content into a p2 repository.<br/>
    tychodemo.bundle.tests
    </pre>
    </li>
+</ul>
 
+<h3>Adding a feature</h3>
+<ol>
 <li>Create a new feature project <tt>tychodemo.feature</tt> and add <tt>tychodemo.bundle</tt> as included plugin:<br/>
 <tt>File > New > Other > Plug-in Development > Feature Project</tt><br/>
 <img src="../resources/new_feature.png"/><br/>
