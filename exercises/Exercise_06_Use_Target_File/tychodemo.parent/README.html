@@ -171,18 +171,25 @@ Now that we have a target definition file, we can use the that file for the targ
 
 <li>Configure the build to use the <tt>helios.target</tt> file as target platform:
 	<ul>
-		<li>In the <tt>tychodemo.parent</tt> POM, add the following configuration to the <tt>target-platform-configuration</tt> build plugin:
+		<li>In the <tt>tychodemo.parent</tt> POM in the <tt>&lt;build&gt;&lt;plugins&gt;</tt> section, add the following build plugin configuration:
 			<pre>
-   &lt;target&gt;
-      &lt;artifact&gt;
-         &lt;groupId&gt;${project.groupId}&lt;/groupId&gt;
-         &lt;artifactId&gt;tychodemo.target&lt;/artifactId&gt;
-         &lt;version&gt;${project.version}&lt;/version&gt;
-         &lt;classifier&gt;indigo&lt;/classifier&gt;
-      &lt;/artifact&gt;
-   &lt;/target&gt;
+   &lt;plugin&gt;
+      &lt;groupId&gt;org.eclipse.tycho&lt;/groupId&gt;
+      &lt;artifactId&gt;target-platform-configuration&lt;/artifactId&gt;
+      &lt;version&gt;${tycho-version}&lt;/version&gt;
+      &lt;configuration&gt;
+         &lt;target&gt;
+            &lt;artifact&gt;
+               &lt;groupId&gt;tychodemo&lt;/groupId&gt;
+               &lt;artifactId&gt;tychodemo.target&lt;/artifactId&gt;
+               &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+               &lt;classifier&gt;indigo&lt;/classifier&gt;
+            &lt;/artifact&gt;
+         &lt;/target&gt;
+      &lt;/configuration&gt;
+   &lt;/plugin&gt;
 			</pre></li>
-		<li>Delete the <tt>repositories</tt> section in the parent POM (<a href="../../Exercise_06_Solution/tychodemo.parent/pom.xml">expected result</a>)</li>
+		<li>Delete the <tt>repositories</tt> section in the parent POM (<a href="../resources/tychodemo.parent_pom.xml_without_bonus.txt">expected result</a>)</li>
 	</ul>
 </li>
 
@@ -215,6 +222,7 @@ Now that we have a target definition file, we can use the that file for the targ
 <ul>
 	<li>We have created a target definition file in order to ensure that all developers of the project use the same target platform.</li>
 	<li>We have re-used the target definition file in the Tycho build configuration to have the same target platform in Tycho as in Eclipse.</li>
+	<li>We have now the possibility to manage the project's dependencies.</li>
 </ul></p>
 
 <hr/>

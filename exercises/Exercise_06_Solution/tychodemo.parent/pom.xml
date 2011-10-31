@@ -30,9 +30,9 @@
 					<!-- add target file content to target platform -->
 					<target>
 						<artifact>
-							<groupId>${project.groupId}</groupId>
+							<groupId>tychodemo</groupId>
 							<artifactId>tychodemo.target</artifactId>
-							<version>${project.version}</version>
+							<version>1.0.0-SNAPSHOT</version>
 							<classifier>indigo</classifier>
 						</artifact>
 					</target>
