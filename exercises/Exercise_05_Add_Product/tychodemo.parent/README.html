@@ -5,114 +5,89 @@
 </head>
 <body>
 
-<p align="center">
-	<a href="../../Exercise_04_Add_P2_Repository/tychodemo.parent/README.html">&lt;Previous Exercise</a>
-	| <a href="../../../README.html">TOC</a>
-	| <a href="../../Exercise_06_Use_Target_File/tychodemo.parent/README.html">Next Exercise&gt;</a>
-</p>
+	<p align="center">
+		<a href="../../Exercise_04_Add_P2_Repository/tychodemo.parent/README.html">&lt;Previous Exercise</a>
+		| <a href="../../../README.html">TOC</a>
+		| <a href="../../Exercise_06_Use_Target_File/tychodemo.parent/README.html">Next Exercise&gt;</a>
+	</p>
 
-<h2>Exercise 5: Add a product</h2>
+	<h2>Exercise 5: Add a product</h2>
 
-In this exercise, we define a product which bundles all artifacts needed for our RCP application into 
-an executable, self-contained RCP application including native launcher, branding etc.
+	In this exercise, we define a product which bundles all artifacts needed for our RCP application into an executable, self-contained RCP application including native launcher, branding etc.
 
-<h3>Recovery option</h3>
+	<h3>Recovery option</h3>
 
-This section is optional and only needed if you want to catch up from exercise 4 or reset your workspace.
+	This section is optional and only needed if you want to catch up from exercise 4 or reset your workspace.
 
-<ul>
-<li>Select <tt>File > Switch Workspace > Other...</tt> and choose folder Exercise_05_Add_Product.<br/>
-  Import all 5 projects from this folder into the new empty eclipse workspace using <tt>File > Import > Existing Maven Projects</tt>
-</li>
+	<ul>
+		<li>Select <tt>File > Switch Workspace > Other...</tt> and choose folder Exercise_05_Add_Product.<br /> Import all 5 projects from this folder into the new empty eclipse workspace using <tt>File
+				> Import > Existing Maven Projects</tt>
+		</li>
 
-<li> Right-click on <tt>tychodemo.parent > Run As > Maven install</tt><br/>
-  The build should succeed and build 5 modules
-   
-   <pre>
+		<li>Right-click on <tt>tychodemo.parent > Run As > Maven install</tt><br /> The build should succeed and build 5 modules <pre>
    tychodemo.parent 
    tychodemo.bundle 
    tychodemo.bundle.tests
    tychodemo.feature
    tychodemo.repository
    </pre>
-</li>
-</ul>   
+		</li>
+	</ul>
 
-<h3>Creating a product configuration file</h3>
-<ol>
-<li> In the <tt>tychodemo.repository</tt> project root folder, create a new .product file:
-  <ol>
-  <li> File > New > Other > Plug-in Development > Product Configuration<br/>
-  <img src="../resources/new_product.png"/>
-  </li>
-  <li> File name: "tychodemo.product"</li>
-  <li> Choose "Use a launch configuration" and select the launch configuration from Exercise 1.<br/>
-    Note: this will make sure the bundle start levels of the product are configured correctly.
-    Otherwise the built product will fail to start.  
-    The start levels in the .product file in this example should be:
-    <pre>
+	<h3>Creating a product configuration file</h3>
+	<ol>
+		<li>In the <tt>tychodemo.repository</tt> project root folder, create a new .product file:
+			<ol>
+				<li>File > New > Other > Plug-in Development > Product Configuration<br /> <img src="../resources/new_product.png" />
+				</li>
+				<li>File name: "tychodemo.product"</li>
+				<li>Choose "Use a launch configuration" and select the launch configuration from Exercise 1.<br /> Note: this will make sure the bundle start levels of the product are configured correctly.
+					Otherwise the built product will fail to start. The start levels in the .product file in this example should be: <pre>
     &lt;configurations&gt;
       &lt;plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" /&gt;
       &lt;plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" /&gt;
       &lt;plugin id="org.eclipse.osgi" autoStart="true" startLevel="-1" /&gt;
     &lt;/configurations&gt;
-	</pre>
-<br/>
-  <img src="../resources/new_product_2.png"/>    </li>
-  <li> In the "Overview" tab:
-  <ol>
-    <li> enter product ID "tychodemo.product"</li>
-    <li> "The product configuration is based on": select "features"</li>
-    <li> Under "Product:", select "tychodemo.bundle.product"</li>
-    <li> Under "Application:", select "tychodemo.bundle.application"</li>
-	</ol>
-	<br/>
-  <img src="../resources/product_overview.png"/>
-    </li>
-  <li> In the "Dependencies" tab:
-    <ol>
-    - add feature "tychodemo.feature" :
-    <pre>
+	</pre> <br /> <img src="../resources/new_product_2.png" />
+				</li>
+				<li>In the "Overview" tab:
+					<ol>
+						<li>enter product ID "tychodemo.product"</li>
+						<li>"The product configuration is based on": select "features"</li>
+						<li>Under "Product:", select "tychodemo.bundle.product"</li>
+						<li>Under "Application:", select "tychodemo.bundle.application"</li>
+					</ol> <br /> <img src="../resources/product_overview.png" />
+				</li>
+				<li>In the "Dependencies" tab:
+					<ol>
+						- add feature "tychodemo.feature" :
+						<pre>
       &lt;feature id="tychodemo.feature" version="1.0.0.qualifier"/&gt;
      </pre>
-	  
-    - add feature "org.eclipse.rcp" :
-    <pre>  
+
+						- add feature "org.eclipse.rcp" :
+						<pre>  
       &lt;feature id="org.eclipse.rcp"/&gt;
 	  </pre>
-	<br/>
-  <img src="../resources/product_dependencies.png"/>
-	  </ol>
-  </li>
-  <li> CAVEAT: due to a <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=359090">bug</a> 
-    you have to make sure that there is no &lt;plugins&gt; section in your feature-based
-    product. Right-click <tt>tychodemo.product > Open with > Text editor</tt>
-    Delete the &lt;plugins&gt; section if found.
-	<br/>
-  <img src="../resources/product_remove_plugins.png"/><br/>
-  Even if the build succeeds, look out for messages like this in your build log:<br/>
-  <img src="../resources/product_mixed_problem.png"/>
-  </li>
-  <li>Note the product is being built as part of the existing packaging type "eclipse-repository".
-  This is not intuitive and there will be a dedicated packaging type for p2-updatable 
-  eclipse products in a <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=348586">later version of tycho</a>.
-  </li>
-  </ol>
-</li>
+						<br />
+						<img src="../resources/product_dependencies.png" />
+					</ol>
+				</li>
+				<li>CAVEAT: due to a <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=359090">bug</a> you have to make sure that there is no &lt;plugins&gt; section in your feature-based product.
+					Right-click <tt>tychodemo.product > Open with > Text editor</tt> Delete the &lt;plugins&gt; section if found. <br /> <img src="../resources/product_remove_plugins.png" /><br /> Even if the build
+					succeeds, look out for messages like this in your build log:<br /> <img src="../resources/product_mixed_problem.png" />
+				</li>
+				<li>Note the product is being built as part of the existing packaging type "eclipse-repository". This is not intuitive and there will be a dedicated packaging type for p2-updatable eclipse
+					products in a <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=348586">later version of tycho</a>.
+				</li>
+			</ol>
+		</li>
 
-<li> Right-click on <tt>tychodemo.parent > Run As > Maven install</tt><br/>
-  Expected result: SUCCESSFUL build.<br/>
-  In tychodemo.repository/target/repository, we have published the product metadata.
-  E.g. you should now find the zipped eclipse launcher binaries in
-  tychodemo.repository/target/repository/binary/
-	<br/>
-  <img src="../resources/product_published.png"/>
-</li>
-  
-<li> Install the product:<br/>
-  Add the following snippet to <tt>tychodemo.repository/pom.xml</tt>:
- 
-<pre>
+		<li>Right-click on <tt>tychodemo.parent > Run As > Maven install</tt><br /> Expected result: SUCCESSFUL build.<br /> In tychodemo.repository/target/repository, we have published the product
+			metadata. E.g. you should now find the zipped eclipse launcher binaries in tychodemo.repository/target/repository/binary/ <br /> <img src="../resources/product_published.png" />
+		</li>
+
+		<li>Install the product:<br /> Add the following snippet to <tt>tychodemo.repository/pom.xml</tt>: <pre>
   &lt;build&gt;
     &lt;plugins&gt;
       &lt;plugin&gt;
@@ -132,36 +107,30 @@ This section is optional and only needed if you want to catch up from exercise 4
     &lt;/plugins&gt;
   &lt;/build&gt;  
  </pre>
-</li>
+		</li>
 
-<li> Run <tt>mvn install</tt> on the parent project.<br/>
-  Expected result: After successful build, you should find an installed product under
-  tychodemo.repository/target/products/tychodemo.product/&lt;os&gt;/&lt;ws&gt;/&lt;arch&gt;/ <br/>
-  <img src="../resources/product_materialized.png"/>
+		<li>Run <tt>mvn install</tt> on the parent project.<br /> Expected result: After successful build, you should find an installed product under
+			tychodemo.repository/target/products/tychodemo.product/&lt;os&gt;/&lt;ws&gt;/&lt;arch&gt;/ <br /> <img src="../resources/product_materialized.png" />
 
-</li>
-  
-<li> Run the product executable.<br/>
-  Expected result: The "Tycho Demo RCP" screen should show up. <br/>
-  <img src="../resources/rcp_screenshot.png"/>
-</li>
-</ol>
-<br/>
+		</li>
 
-<p>
-This concludes the mandatory part of this exercise. You may now continue with <a href="../../Exercise_06_Use_Target_File/tychodemo.parent/README.html">exercise 6</a> or do the bonus steps below.
-</p>
+		<li>Run the product executable.<br /> Expected result: The "Tycho Demo RCP" screen should show up. <br /> <img src="../resources/rcp_screenshot.png" />
+		</li>
+	</ol>
+	<br />
 
-<hr/>
+	<p>
+		This concludes the mandatory part of this exercise. You may now continue with <a href="../../Exercise_06_Use_Target_File/tychodemo.parent/README.html">exercise 6</a> or do the bonus steps below.
+	</p>
 
-<h3 id="bonus">Additional bonus steps</h3>
+	<hr />
 
-<ol>
-<li> Create a product zip:
-   <ul>
-  <li> Add the following snippet to the executions section of tycho-p2-director-plugin in 
-    tychodemo.repository/pom.xml:
-   <pre>
+	<h3 id="bonus">Additional bonus steps</h3>
+
+	<ol>
+		<li>Create a product zip:
+			<ul>
+				<li>Add the following snippet to the executions section of tycho-p2-director-plugin in tychodemo.repository/pom.xml: <pre>
           &lt;execution&gt;
             &lt;!-- (optional) create product zips (one per os/ws/arch) --&gt;
             &lt;id&gt;archive-products&lt;/id&gt;
@@ -169,26 +138,18 @@ This concludes the mandatory part of this exercise. You may now continue with <a
               &lt;goal&gt;archive-products&lt;/goal&gt;
             &lt;/goals&gt;
           &lt;/execution&gt;
-   </pre>          
-   </li>
-    <li> Expected result: after successful build, you should find a product zip under 
-    tychodemo.repository/target/products/
-  <br/>
-    <img src="../resources/product_zip.png"/>
-	</li>
-	</ul>
-</li>
-   
-<li> Configure the product executable name:<br/>
-  Choose a name, e.g. "tychoDemoRCP" in the "Launching" tab of the product editor
-  <br/>
-    <img src="../resources/product_launcher_name.png"/>
+   </pre>
+				</li>
+				<li>Expected result: after successful build, you should find a product zip under tychodemo.repository/target/products/ <br /> <img src="../resources/product_zip.png" />
+				</li>
+			</ul>
+		</li>
 
-</li>
-  
-<li> Configure the product root folder:<br/>
-  Add the following snippet to the tycho-p2-director plugin section:
-  <pre>
+		<li>Configure the product executable name:<br /> Choose a name, e.g. "tychoDemoRCP" in the "Launching" tab of the product editor <br /> <img src="../resources/product_launcher_name.png" />
+
+		</li>
+
+		<li>Configure the product root folder:<br /> Add the following snippet to the tycho-p2-director plugin section: <pre>
         &lt;!-- (optional) customize the root folder name of the product zip --&gt;
         &lt;configuration&gt;
           &lt;products&gt;
@@ -199,31 +160,18 @@ This concludes the mandatory part of this exercise. You may now continue with <a
           &lt;/products&gt;
         &lt;/configuration&gt;
 
-		</pre><br/>
-  <img src="../resources/product_custom_rootfolder.png"/>
-</li>		
-<li> Configure the splash screen:<br/>
-  On the "Splash" tab of the product editor, configure "Plugin:" "tychodemo.bundle"
-  <br/>
-  <img src="../resources/product_splash.png"/>
-</li>  
-<li> Customize executable icon:<br/>
-  <ol> 
-   <li>Copy tychodemo.bundle/icons/ to tychodemo.repository/icons/</li>
-    <li>On the "Launching" tab of the product editor, choose e.g. for win32:
-    "Use single .ico:" -> "icons/alt_launcher.ico"</li>
-	</ol>
-	<br/>
-    <img src="../resources/product_icon.png"/>
-	<br/>
-    <img src="../resources/product_icon_result.png"/>
-	
-</li>    
-<li> Build the product for multiple platforms:<br/>
-  - Configure the target platform environments in tychodemo.parent/pom.xml
-    E.g. for two platforms linux/gtk/x86_64 and win32/win32/x86:
+		</pre><br /> <img src="../resources/product_custom_rootfolder.png" />
+		</li>
+		<li>Configure the splash screen:<br /> On the "Splash" tab of the product editor, configure "Plugin:" "tychodemo.bundle" <br /> <img src="../resources/product_splash.png" />
+		</li>
+		<li>Customize executable icon:<br />
+			<ol>
+				<li>Copy tychodemo.bundle/icons/ to tychodemo.repository/icons/</li>
+				<li>On the "Launching" tab of the product editor, choose e.g. for win32: "Use single .ico:" -> "icons/alt_launcher.ico"</li>
+			</ol> <br /> <img src="../resources/product_icon.png" /> <br /> <img src="../resources/product_icon_result.png" />
 
-<pre>    
+		</li>
+		<li>Build the product for multiple platforms:<br /> - Configure the target platform environments in tychodemo.parent/pom.xml E.g. for two platforms linux/gtk/x86_64 and win32/win32/x86: <pre>    
       &lt;plugin&gt;
         &lt;groupId&gt;org.eclipse.tycho&lt;/groupId&gt;
         &lt;artifactId&gt;target-platform-configuration&lt;/artifactId&gt;
@@ -245,31 +193,20 @@ This concludes the mandatory part of this exercise. You may now continue with <a
         &lt;/configuration&gt;
       &lt;/plugin&gt;    
 </pre>
-</li>
+		</li>
 
-<li> Run <tt>mvn install</tt> on the parent project.
-  Expected result: After successful build, you should now find two installed products under
-  tychodemo.repository/target/products/tychodemo.product/ :
-  One for linux/gtk/x86_64 and one for win32/win32/x86_64.
-</li>  
-<br/>
-    <img src="../resources/product_multi_platform.png"/>
- </ol>
+		<li>Run <tt>mvn install</tt> on the parent project. Expected result: After successful build, you should now find two installed products under
+			tychodemo.repository/target/products/tychodemo.product/ : One for linux/gtk/x86_64 and one for win32/win32/x86_64.
+		</li>
+		<br />
+		<img src="../resources/product_multi_platform.png" />
+	</ol>
 
-<p align="center">
-	<a href="../../Exercise_04_Add_P2_Repository/tychodemo.parent/README.html">&lt;Previous Exercise</a>
-	| <a href="../../../README.html">TOC</a>
-	| <a href="../../Exercise_06_Use_Target_File/tychodemo.parent/README.html">Next Exercise&gt;</a>
-</p>
-  
+	<p align="center">
+		<a href="../../Exercise_04_Add_P2_Repository/tychodemo.parent/README.html">&lt;Previous Exercise</a>
+		| <a href="../../../README.html">TOC</a>
+		| <a href="../../Exercise_06_Use_Target_File/tychodemo.parent/README.html">Next Exercise&gt;</a>
+	</p>
+
 </body>
-</html> 
- 
-
-
-
-
-
-   
-
-
+</html>
