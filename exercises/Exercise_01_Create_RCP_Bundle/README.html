@@ -50,7 +50,7 @@ We will compile and run the plugin from the IDE and then show how to build it wi
 <img src ="resources/about_3.png" />
  </li>
  </ul>
- <li>Right-click the <tt>tychodemo.bundle</tt> project and select <tt>Configure > Convert to Maven Project</tt><br/>
+ <li><a name="convert_to_maven"/>Right-click the <tt>tychodemo.bundle</tt> project and select <tt>Configure > Convert to Maven Project</tt><br/>
    <img src ="resources/convert_to_maven_1.png" />
  </li>
  <li>Enter <tt>Group Id: tychodemo</tt>, <tt>Version: 1.0.0-SNAPSHOT</tt>, <tt>Packaging: eclipse-plugin</tt>.<br/>
@@ -63,7 +63,7 @@ This is expected, because the tycho build extension is not yet configured (see n
    <img src ="resources/build_error.png" />
 </li>
  
-<li>Open <tt>pom.xml</tt>, go to Tab "pom.xml". Remove the complete <tt>&lt;build&gt;</tt> element (this is an <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=374742">m2eclipse bug</a>).<br/>
+<li><a name="remove_build_section"/>Open <tt>pom.xml</tt>, go to Tab "pom.xml". Remove the complete <tt>&lt;build&gt;</tt> element (this is an <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=374742">m2eclipse bug</a>).<br/>
    <img src ="resources/remove_build_section.png" />
 <li> To define the tycho version to be used, add this snippet into <tt>&lt;project&gt;</tt> :
 
