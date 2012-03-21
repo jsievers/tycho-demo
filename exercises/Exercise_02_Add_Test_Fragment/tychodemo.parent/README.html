@@ -24,7 +24,7 @@ Common settings have been extracted to a parent POM <a href="pom.xml"><tt>tychod
 <li> Import the 2 projects from this folder into the new empty eclipse workspace using <tt>File > Import > Maven > Existing Maven Projects</tt><br/>
 <img src="../resources/import.png"/>
 </li>
-<li> Open <tt>pom.xml</tt> in <tt>tychodemo.parent</tt> and change the file URL to point to the folder <tt>tutorial/p2_repository/</tt> which you copied earlier from the USB stick:<br/>
+<li><a name="change_p2_url"/> Open <tt>pom.xml</tt> in <tt>tychodemo.parent</tt> and change the file URL to point to the folder <tt>tutorial/p2_repository/</tt> which you copied earlier from the USB stick:<br/>
 <img src="../resources/p2_repo_path.png"/>
 
 </li>
@@ -98,7 +98,7 @@ Open <tt>AboutHandler.java</tt>, select the about text String and extract it int
    </li>
 </li>
    
-   <li>Add the module to <tt>&lt;modules&gt;</tt> section of the <a href="pom.xml">parent pom.xml</a>:
+   <li><a name="add_module"/>Add the module to <tt>&lt;modules&gt;</tt> section of the <a href="pom.xml">parent pom.xml</a>:
    Open <tt>tychodemo.parent/pom.xml</tt>, on the "Overview" tab in the "Modules" section, press <tt>Add...</tt>.<br/>
   <img src="../resources/add_module_1.png"/><br/>
   Select <tt>tychodemo.bundle.tests</tt> and <tt>Update POM parent in selected projects</tt>:<br/>
