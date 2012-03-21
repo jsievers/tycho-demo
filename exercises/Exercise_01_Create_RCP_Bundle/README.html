@@ -1,72 +1,70 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>EclipseCon 2011 Tycho Tutorial - Exercise 1</title>
+<title>EclipseCon 2012 Tycho Tutorial - Exercise 1</title>
 </head>
 <body>
 <p align="center">
  <a href="../../README.html">TOC</a> | <a href="../Exercise_02_Add_Test_Fragment/tychodemo.parent/README.html">Next Exercise&gt;</a> 
 </p>
-<h2>Exercise 1: Create and build a "Hello World" RCP plugin using Tycho</h2>
+<h2>Exercise 1: Create and build a "Hello World" e4 RCP plugin using Tycho</h2>
 
-In this exercise, we will use the project templates shipped with eclipse to create a simple "Hello World" Rich Client Platform plugin.<br/>
-We will compile and run the plugin from the IDE and then show how to build it with tycho by simply adding a Maven <tt>pom.xml</tt> project file.
+In this exercise, we will use the e4 tools to create a simple "Hello World" e4 Rich Client Platform plugin.<br/>
+We will compile and run the plugin from the IDE and then show how to build it with tycho by converting it to Maven project.
 <ol>
-<li>Create a new plugin project with name <tt>tychodemo.bundle</tt>
+<li>Create a new e4 Application with name <tt>tychodemo.bundle</tt>
 <ul>
-<li><tt>File > New > Project > Plugin Project</tt></li>
-<li>Choose "Create a rich client application" and use the "Hello RCP" template to create a hello-world RCP bundle</li>
-<li>Enter window title "Tycho Demo RCP"</li>
-<li>Check "Add branding" (Note: we will need this later when building a product)</li>
+<li><tt>File > New > Project > e4 > e4 Application Project</tt></li>
+<li>Enter "tychodemo.bundle" as project name</li>
+<li>In "Content", enter Name: "Tycho Demo Bundle"</li>
+<li>In "e4 Application", keep all default values and press Finish</li>
 <table>
 <tr>
-<td valign="top"><img src ="resources/create_plugin_0.png" /></td>
-<td valign="top"><img src ="resources/create_plugin_1.png" /></td>
+<td valign="top"><img src ="resources/new_e4_app.png" /></td>
+<td valign="top"><img src ="resources/new_e4_app_1.png" /></td>
 </tr>
 <tr>
-<td valign="top"><img src ="resources/create_plugin_2.png" /></td>
-<td valign="top"><img src ="resources/create_plugin_3.png" /></td>
+<td valign="top"><img src ="resources/new_e4_app_2.png" /></td>
+<td valign="top"><img src ="resources/new_e4_app_3.png" /></td>
 </tr>
 </table>
 </ul>
 <li>Run the application to check if it works:
 <ul>
- <li>Create a new "Eclipse Application" launch configuration using <tt>Run > Run Configurations... > Eclipse Application > New</tt></li>
- <li>Choose "Run a product" and select <tt>tychodemo.bundle.product</tt><br/>
- <img src="resources/run_configuration.png"/>
+ <li>Open the Product definition file <tt>tychodemo.bundle.product</tt>, tab "Overview"</li>
+ <li>Enter ID "tychodemo.product" and press "Launch an Eclipse application"<br/>
+ <img src="resources/product_1.png"/>
  </li>
  
- <li>You should see a splash screen followed by an empty RCP window with title "Tycho Demo RCP".<br/>
-  <img src="resources/rcp_screen.png"/>
+ <li>You should see a small RCP window with title "tychodemo.bundle".<br/>
+  <img src="resources/screenshot_1.png"/>
 
    </li>
- <li>Hint: to avoid starting lots of unneeded bundles slowing down startup:
-      <ul>
-	   <li>go to the Plug-ins tab of the launch configuration</li>
-       <li>under "Launch with:", select "Plug-ins selected below only"</li>
-       <li>uncheck all plugins in the target platform and only check "tychodemo.bundle" from the workspace</li>
-       <li>press "Add Required Plug-ins"</li>
-	   </ul>
-   Now only the plugins (transitively) required by <tt>tychodemo.bundle</tt> will be started.
+ <li>Open the <tt>Help > About</tt> menu. A dialog box should appear:<br/>
+  <img src="resources/about_1.png"/>
+ 
+ </li>
+ <li>Open <tt>tychodemo.bundle.handlers.AboutHandler</tt> and change the about text from <tt>"e4 Application example."</tt> to <tt>"Tycho Demo RCP"</tt><br/>
+ <img src ="resources/about_2.png" /></li>
+<li>Open <tt>tychodemo.bundle.product</tt> and launch the Eclipse application again. Open the <tt>Help > About</tt> dialog. You should see your message now: <br/>
+<img src ="resources/about_3.png" />
  </li>
  </ul>
- <li>Add a maven project file <tt>pom.xml</tt> in the root of the project using <tt>File > New > File > pom.xml</tt> and paste the following content:
-<pre>
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;project
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
-  
-  &lt;groupId&gt;tychodemo&lt;/groupId&gt;
-  &lt;artifactId&gt;tychodemo.bundle&lt;/artifactId&gt;
-  &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
-  
-  &lt;packaging&gt;eclipse-plugin&lt;/packaging&gt;
-&lt;/project&gt;
-</pre>
-</li>
+ <li>Right-click the <tt>tychodemo.bundle</tt> project and select <tt>Configure > Convert to Maven Project</tt><br/>
+   <img src ="resources/convert_to_maven_1.png" />
+ </li>
+ <li>Enter <tt>Group Id: tychodemo</tt>, <tt>Version: 1.0.0-SNAPSHOT</tt>, <tt>Packaging: eclipse-plugin</tt>.<br/>
+   <img src ="resources/convert_to_maven_2.png" />
+ </li>
  Note that <tt>MANIFEST/Bundle-SymbolicName == POM/artifactId</tt> and <tt>MANIFEST/&lt;Bundle-Version&gt;.qualifier == POM/&lt;version&gt;-SNAPSHOT</tt>
-
+<li>
+You will get a build error on the newly created file <tt>pom.xml</tt>: <tt>"Project build error: Unknown packaging: eclipse-plugin"</tt>.<br/>
+This is expected, because the tycho build extension is not yet configured (see next steps).<br/>
+   <img src ="resources/build_error.png" />
+</li>
+ 
+<li>Open <tt>pom.xml</tt>, go to Tab "pom.xml". Remove the complete <tt>&lt;build&gt;</tt> element (this is an <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=374742">m2eclipse bug</a>).<br/>
+   <img src ="resources/remove_build_section.png" />
 <li> To define the tycho version to be used, add this snippet into <tt>&lt;project&gt;</tt> :
 
 <pre>
@@ -92,46 +90,42 @@ We will compile and run the plugin from the IDE and then show how to build it wi
 </pre>
 </li>
 
-<li> To build against the Indigo p2 repository, add this snippet in <tt>&lt;project&gt;</tt>:
-
+<li>Make your build network-independent:
+<ul>
+<li>
+To build against your local p2 repository, add this snippet in <tt>&lt;project&gt;</tt> and change the file URL to point to the folder <tt>tutorial/p2_repository/</tt> which you copied earlier from the USB stick:
 <pre>
   &lt;repositories&gt;
     &lt;!-- configure p2 repository to resolve against --&gt;
     &lt;repository&gt;
-      &lt;id&gt;indigo&lt;/id&gt;
+      &lt;id&gt;juno-local&lt;/id&gt;
       &lt;layout&gt;p2&lt;/layout&gt;
-      &lt;url&gt;http://download.eclipse.org/releases/indigo/&lt;/url&gt;
+      &lt;url&gt;file:/PATH/TO/tutorial/p2_repository/&lt;/url&gt;
     &lt;/repository&gt;
   &lt;/repositories&gt;
 </pre>
-NOTE: Should the Indigo p2 repository be too slow/unavailable, you may get an error like <br/>
-<img src="resources/indigo_failed.png"/>
 <br/>
-
-
-        In this case, you can use a local p2 repository as a fallback.<br/> Enter the file URL to the folder <tt>tutorial/repository/</tt> which 
-		you copied from the USB stick during setup:
+Note: The local p2 repository we provide on the USB stick is a subset mirrored from the <a href="http://download.eclipse.org/releases/juno/">Juno p2 repository</a>.<br/>
+Using the local p2 repository avoids network problems during the tutorial and works around one open <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=355433 ">bug in the Juno p2 repo</a>.
+	
 </li>
 
-		<pre>
-  &lt;repositories&gt;
-    &lt;!-- resolve against local p2 repository --&gt;
-    &lt;repository&gt;
-      &lt;id&gt;indigo_local&lt;/id&gt;
-      &lt;layout&gt;p2&lt;/layout&gt;
-      &lt;url&gt;file:/absolute/path/to/repository-folder/copied/from/usb-stick/&lt;/url&gt;
-    &lt;/repository&gt;
-  &lt;/repositories&gt;
-		</pre>
-  Should <tt><a href="http://repo1.maven.org">Maven Central (http://repo1.maven.org)</a></tt> be too slow or unavailable, you can use a pre-filled local maven repository as fallback.<br/>
-  In this case, copy the content of folder <tt>tutorial/maven_repository</tt> to <tt>${user.home}/.m2/repository</tt>.
-
-<li> Right-click pom.xml <tt>Run As > Maven install</tt> (or run <tt>mvn install</tt> on the command prompt)<br/>
-<img src="resources/run_maven_install.png"/>
+<li> To be independent of network access to <tt><a href="http://repo1.maven.org">Maven Central (http://repo1.maven.org)</a></tt>, use the pre-filled local maven repository from the USB stick:<br/>
+Copy the content of folder <tt>tutorial/maven_repository</tt> to <tt>~/.m2/repository/</tt> (Linux/Mac) or <tt>%USERPROFILE%/.m2/repository/</tt> (Windows).
+</li>
+</ul>
 </li>
 
-<li> expected result is a <tt>SUCCESSFUL</tt> build with the bundle jar 
+<li> Right-click the tychodemo.bundle project and select <tt>Run As > Maven build</tt> <br/>
+<img src="resources/run_maven_1.png"/>
+</li>
+<li> Enter  <tt>Goals: clean install</tt> <br/>
+<img src="resources/run_maven_2.png"/>
+</li>
+
+<li> Expected result is a <tt>SUCCESSFUL</tt> build with the bundle jar 
   <tt>tychodemo.bundle-1.0.0-SNAPSHOT.jar</tt> in the <tt>target/</tt> folder of the project <br/>
+  (you may have to refresh the project to display the <tt>target/</tt> folder)<br/>
 <img src="resources/build_success.png"/>
   </li>
 </ol>

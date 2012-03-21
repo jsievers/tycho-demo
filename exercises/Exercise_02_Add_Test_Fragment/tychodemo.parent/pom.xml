@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<groupId>tychodemo</groupId>
 	<artifactId>tychodemo.parent</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
@@ -22,7 +22,7 @@
 		<repository>
 			<id>juno</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/releases/juno/</url>
+			<url>file:/c:/tmp/PATH/TO/p2-repo/FROM/USB-STICK/</url>
 		</repository>
 	</repositories>
 
