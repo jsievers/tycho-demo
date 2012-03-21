@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>tychodemo</groupId>
 	<artifactId>tychodemo.parent</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<!-- this is the parent POM from which all modules inherit common settings -->
+	<!-- the modules that should be built together -->
+	<modules>
+		<module>../tychodemo.bundle</module>
+		<module>../tychodemo.bundle.tests</module>
+	</modules>
+
+	<!-- common settings for all modules -->
 	<properties>
 		<tycho-version>0.14.1</tycho-version>
 	</properties>
@@ -16,9 +21,9 @@
 	<repositories>
 		<!-- configure p2 repository to resolve against -->
 		<repository>
-			<id>indigo</id>
+			<id>juno</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/releases/indigo/</url>
+			<url>file:/PATH/TO/tutorial/p2_repository/</url>
 		</repository>
 	</repositories>
 
@@ -33,9 +38,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	<modules>
-		<module>../tychodemo.bundle</module>
-		<module>../tychodemo.bundle.tests</module>
-	</modules>
 
 </project>
