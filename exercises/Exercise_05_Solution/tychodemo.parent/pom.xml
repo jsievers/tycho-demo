@@ -25,7 +25,7 @@
 		<repository>
 			<id>juno</id>
 			<layout>p2</layout>
-			<url>file:/PATH/TO/tutorial/p2_repository/</url>
+			<url>file:/PATH/TO/tutorial/p2_repository/</url>   <!-- e.g. file:/c:/temp/tycho/tutorial/p2_repository/ -->
 		</repository>
 	</repositories>
 
