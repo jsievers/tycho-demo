@@ -65,22 +65,28 @@
 		<li>Run the build of <tt>tychodemo.parent</tt>, e.g. by selecting <tt>tychodemo.parent</tt> from the run history
 			<br /> Expected results:
 			<ul>
-				<li><tt>SUCCESSFUL</tt> build including <tt>tychodemo.repository</tt> module,</li>
-				<li>A p2 repository in <a href="../tychodemo.repository/target/repository/"><tt>tychodemo.repository/target/repository/</tt></a>, and</li>
-				<li>The zipped p2 repository in <a href="../tychodemo.repository/target/tychodemo.repository.zip"><tt>tychodemo.repository/target/tychodemo.repository.zip</tt></a></li>
-			</ul> <img src="../resources/build_success.png" />
-		</li>
-		<li>Test the p2 repository just created:<br />
-			<ul>
-				<li><tt>Help > Install New Software > Add... > Local... </tt></li>
-				<li>Choose your local <a href="../tychodemo.repository/target/repository/"><tt>tychodemo.repository/target/repository/</tt></a> folder.
+				<li><tt>SUCCESSFUL</tt> build including <tt>tychodemo.repository</tt> module,
+					<br /><img src="../resources/build_success.png" />
 				</li>
-
-				<li>Now the demo category and feature created in the previous step should show up in the p2 installer UI. Press <tt>Cancel</tt> as we only want to check if the p2 repository is valid and
-					don't want to install.
-				</li>
-			</ul> <img src="../resources/test_p2_repo.png" />
+				<li>A p2 repository in <tt>tychodemo.repository/target/repository/</tt>, and</li>
+				<li>The zipped p2 repository in <tt>tychodemo.repository/target/tychodemo.repository.zip</tt></li>
+			</ul>
 		</li>
+		<li>Test the p2 repository just created:<ul>
+			<li>Refresh the <tt>tychodemo.repository</tt> project in the package explorer</li>
+			<li>Right-click on <tt>tychodemo.repository/target/repository</tt> and select <tt>Properties</tt>
+				<br /><img src="../resources/p2_repo_properties.png" />
+			</li>
+			<li>Copy the file system location of the folder; close the dialog
+				<br /><img src="../resources/p2_repo_path.png" />
+			</li>
+			<li><tt>Help > Install New Software...</tt></li>
+			<li>In the <tt>Work with</tt> field, type <tt>file:</tt> and paste the path from the clipboard; press ENTER to load the repository
+				<br />The demo category and feature created in the previous step should be shown.
+				<br /><img src="../resources/p2_repo_loaded.png" />
+			</li>
+			<li>Press <tt>Cancel</tt> as we only want to check if the p2 repository is valid and don't want to install.</li>
+		</ul></li>
 	</ol>
 
 	<p align="center">
