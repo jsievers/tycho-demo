@@ -50,6 +50,10 @@ We will compile and run the plugin from the IDE and then show how to build it wi
 <img src ="resources/about_3.png" />
  </li>
  </ul>
+ <li>To be independent of network access to <tt><a href="http://repo1.maven.org">Maven Central (http://repo1.maven.org)</a></tt>, we will use the pre-filled local maven repository from the USB stick:<br/>
+Copy the content of folder <tt>tutorial/maven_repository/*</tt> to <tt>~/.m2/repository/</tt> (Linux/Mac) or <tt>%USERPROFILE%/.m2/repository/</tt> (Windows).
+</li>
+
  <li><a name="convert_to_maven"/>Right-click the <tt>tychodemo.bundle</tt> project and select <tt>Configure > Convert to Maven Project</tt><br/>
    <img src ="resources/convert_to_maven_1.png" />
  </li>
@@ -90,29 +94,10 @@ This is expected, because the tycho build extension is not yet configured (see n
 </pre>
 </li>
 
-<li>Make your build network-independent:
+<li>If there are still error markers from m2eclipse:
 <ul>
-<li>
-To build against your local p2 repository, add this snippet in <tt>&lt;project&gt;</tt> and change the file URL to point to the folder <tt>tutorial/p2_repository/</tt> which you copied earlier from the USB stick:
-<pre>
-  &lt;repositories&gt;
-    &lt;!-- configure p2 repository to resolve against --&gt;
-    &lt;repository&gt;
-      &lt;id&gt;juno-local&lt;/id&gt;
-      &lt;layout&gt;p2&lt;/layout&gt;
-      &lt;url&gt;file:/PATH/TO/tutorial/p2_repository/&lt;/url&gt;
-    &lt;/repository&gt;
-  &lt;/repositories&gt;
-</pre>
-<br/>
-Note: The local p2 repository we provide on the USB stick is a subset mirrored from the <a href="http://download.eclipse.org/releases/juno/">Juno p2 repository</a>.<br/>
-Using the local p2 repository avoids network problems during the tutorial and works around one open <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=355433 ">bug in the Juno p2 repo</a>.
-	
-</li>
-<li> To be independent of network access to <tt><a href="http://repo1.maven.org">Maven Central (http://repo1.maven.org)</a></tt>, we will use the pre-filled local maven repository from the USB stick:<br/>
-Copy the content of folder <tt>tutorial/maven_repository</tt> to <tt>~/.m2/repository/</tt> (Linux/Mac) or <tt>%USERPROFILE%/.m2/repository/</tt> (Windows).
-</li>
-
+<li><tt>"Project build error: Unknown packaging: eclipse-plugin"</tt>: you have to restart your IDE (this is probably an m2eclipse bug)</li>
+<li><tt>"Project configuration is not up to date"</tt>: Right-click the project <tt>Maven > Update Project...</tt>, select all projects and click OK</li>
 </ul>
 </li>
 
@@ -123,14 +108,46 @@ Copy the content of folder <tt>tutorial/maven_repository</tt> to <tt>~/.m2/repos
 <img src="resources/run_maven_2.png"/>
 </li>
 
+<li>Expected result: the build fails:<br/>
+<img src="resources/build_error_p2.png"/>
+
+</li>
+<li>
+Specify the p2 repository for resolving dependencies: <br/>
+<ul>
+  <li>Add this snippet in <tt>&lt;project&gt;</tt> 
+<pre>
+  &lt;repositories&gt;
+    &lt;!-- configure p2 repository to resolve against --&gt;
+    &lt;repository&gt;
+      &lt;id&gt;juno-local&lt;/id&gt;
+      &lt;layout&gt;p2&lt;/layout&gt;
+      &lt;url&gt;file:/PATH/TO/tutorial/p2_repository/&lt;/url&gt;
+    &lt;/repository&gt;
+  &lt;/repositories&gt;
+</pre></li>
+
+<li>
+Change the file URL to point to the folder <tt>tutorial/p2_repository/</tt> which you copied earlier from the USB stick.
+</li>
+
+<li>Copy your local file URL and save it in a text editor (we will need it later in other exercises)
+</li>
+</ul>
+
+<br/>
+Note: The local p2 repository we provide on the USB stick is a subset mirrored from the <a href="http://download.eclipse.org/releases/juno/">Juno p2 repository</a>.<br/>
+Using the local p2 repository avoids network problems during the tutorial and works around one open <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=355433">bug in the Juno p2 repo</a>.
+	
+</li>
+
+
 <li> Expected result is a <tt>SUCCESSFUL</tt> build with the bundle jar 
   <tt>tychodemo.bundle-1.0.0-SNAPSHOT.jar</tt> in the <tt>target/</tt> folder of the project <br/>
   (you may have to refresh the project to display the <tt>target/</tt> folder)<br/>
 <img src="resources/build_success.png"/>
   </li>
 </ol>
-<li>NOTE: If the "Unknown packaging" error markers do not disappear after successful build, you may have to restart your IDE and right-click on the project, select <tt>Maven > Update Project...</tt>. Select all projects and click <tt>OK</tt>.
-
 <p align="center">
  <a href="../../README.html">TOC</a> | <a href="../Exercise_02_Add_Test_Fragment/tychodemo.parent/README.html">Next Exercise&gt;</a> 
 </p>
