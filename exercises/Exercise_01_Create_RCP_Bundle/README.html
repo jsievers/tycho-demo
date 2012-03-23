@@ -32,7 +32,7 @@ We will compile and run the plugin from the IDE and then show how to build it wi
 <li>Run the application to check if it works:
 <ul>
  <li>Open the Product definition file <tt>tychodemo.bundle.product</tt>, tab "Overview"</li>
- <li>Enter ID "tychodemo.product" and press "Launch an Eclipse application"<br/>
+ <li>Press "Launch an Eclipse application"<br/>
  <img src="resources/product_1.png"/>
  </li>
  
@@ -109,10 +109,10 @@ Note: The local p2 repository we provide on the USB stick is a subset mirrored f
 Using the local p2 repository avoids network problems during the tutorial and works around one open <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=355433 ">bug in the Juno p2 repo</a>.
 	
 </li>
-
-<li> To be independent of network access to <tt><a href="http://repo1.maven.org">Maven Central (http://repo1.maven.org)</a></tt>, use the pre-filled local maven repository from the USB stick:<br/>
+<li> To be independent of network access to <tt><a href="http://repo1.maven.org">Maven Central (http://repo1.maven.org)</a></tt>, we will use the pre-filled local maven repository from the USB stick:<br/>
 Copy the content of folder <tt>tutorial/maven_repository</tt> to <tt>~/.m2/repository/</tt> (Linux/Mac) or <tt>%USERPROFILE%/.m2/repository/</tt> (Windows).
 </li>
+
 </ul>
 </li>
 
@@ -129,6 +129,7 @@ Copy the content of folder <tt>tutorial/maven_repository</tt> to <tt>~/.m2/repos
 <img src="resources/build_success.png"/>
   </li>
 </ol>
+<li>NOTE: If the "Unknown packaging" error markers do not disappear after successful build, you may have to restart your IDE and right-click on the project, select <tt>Maven > Update Project...</tt>. Select all projects and click <tt>OK</tt>.
 
 <p align="center">
  <a href="../../README.html">TOC</a> | <a href="../Exercise_02_Add_Test_Fragment/tychodemo.parent/README.html">Next Exercise&gt;</a> 
