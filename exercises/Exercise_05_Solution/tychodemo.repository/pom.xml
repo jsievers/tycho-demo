@@ -20,11 +20,17 @@
 				<version>${tycho-version}</version>
 				<executions>
 					<execution>
-						<!-- (optional) install the product for all configured os/ws/arch environments 
-							using p2 director -->
+						<!-- install the product using the p2 director -->
 						<id>materialize-products</id>
 						<goals>
 							<goal>materialize-products</goal>
+						</goals>
+					</execution>
+					<execution>
+						<!-- create zip file with the installed product -->
+						<id>archive-products</id>
+						<goals>
+							<goal>archive-products</goal>
 						</goals>
 					</execution>
 				</executions>

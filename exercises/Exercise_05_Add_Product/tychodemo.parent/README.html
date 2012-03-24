@@ -12,7 +12,8 @@
 
 	<h2>Exercise 5: Add a product</h2>
 
-	In this exercise, we build a ready to use distribution of the RCP application.
+	In this exercise, we build an installation of our RCP application and pack it into a ready-to-use ZIP archive.
+	<br />Offering an archive for download is a common way to distribute RCP applications.
 
 	<h3>Recovery option</h3>
 
@@ -87,13 +88,13 @@
 		<li>Run the build of <tt>tychodemo.parent</tt>, e.g. by right-clicking on <tt>tychodemo.parent > Run As > Maven build</tt>
 			<br />Expected results: <ul>
 				<li><tt>BUILD SUCCESS</tt></li>
-				<li>The p2 repository in <tt>tychodemo.repository/target/repository</tt> now contains the product metadata (hard to demonstrate) and the content of the product:
+				<li>The p2 repository in <tt>tychodemo.repository/target/repository</tt> now contains the product metadata and the content of the product:
 					<br /><img src="../resources/product_published.png" />
 				</li>
 			</ul>
 		</li>
 
-		<li>Configure the build to create a product installation <ul>
+		<li>Configure the build to create a product installation and archive <ul>
 			<li>Open the file <tt>tychodemo.repository/pom.xml</tt></li>
 			<li>Switch to the <tt>pom.xml</tt> tab and add the following snippet: <pre>
   &lt;build&gt;
@@ -104,16 +105,23 @@
         &lt;version&gt;${tycho-version}&lt;/version&gt;
         &lt;executions&gt;
           &lt;execution&gt;
-            &lt;!-- (optional) install the product for all configured os/ws/arch environments using p2 director --&gt;
+            &lt;!-- install the product using the p2 director --&gt;
             &lt;id&gt;materialize-products&lt;/id&gt;
             &lt;goals&gt;
               &lt;goal&gt;materialize-products&lt;/goal&gt;
             &lt;/goals&gt;
           &lt;/execution&gt;
+          &lt;execution&gt;
+            &lt;!-- create zip file with the installed product --&gt;
+            &lt;id&gt;archive-products&lt;/id&gt;
+            &lt;goals&gt;
+              &lt;goal&gt;archive-products&lt;/goal&gt;
+            &lt;/goals&gt;
+          &lt;/execution&gt;
         &lt;/executions&gt;
       &lt;/plugin&gt;
     &lt;/plugins&gt;
-  &lt;/build&gt;  
+  &lt;/build&gt;
  </pre>
 			</li>
 		</ul></li>
@@ -128,7 +136,7 @@
 		</li>
 
 		<li>Run the product executable
-			<br />Expected result: The "tychodemo.bundle" RCP is started, but the toolbar icons are missing
+			<br />Expected result: The <tt>tychodemo.bundle</tt> RCP is started, but the toolbar icons are missing
 			<br /><img src="../resources/rcp_noicons.png" />
 		</li>
 
@@ -140,7 +148,7 @@
 		</ul></li>
 
 		<li>Close the RCP (if it is still running), run the build of <tt>tychodemo.parent</tt>, and launch the RCP again from the <tt>target</tt> folder of <tt>tychodemo.repository</tt> project
-			<br />Now the RCP should be shown correctly
+			<br />Now the icons should be shown correctly
 			<br /><img src="../resources/rcp.png" />
 		</li>
 	</ol>
