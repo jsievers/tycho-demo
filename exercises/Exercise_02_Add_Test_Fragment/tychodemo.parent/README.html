@@ -24,10 +24,6 @@ Common settings have been extracted to a parent POM <a href="pom.xml"><tt>tychod
 <li> Import the 2 projects from this folder into the new empty eclipse workspace using <tt>File > Import > Maven > Existing Maven Projects</tt><br/>
 <img src="../resources/import.png"/>
 </li>
-<li><a name="change_p2_url"/> Open <tt>pom.xml</tt> in <tt>tychodemo.parent</tt> and change the file URL to point to the folder <tt>tutorial/p2_repository/</tt> which you copied earlier from the USB stick:<br/>
-<img src="../resources/p2_repo_path.png"/>
-
-</li>
 <li>Right-click on tychodemo.parent, <tt>Run As > Maven build</tt>, enter Goals: <tt>clean install</tt>.<br/>
 The build should succeed and build 2 modules:<br/>
 <img src="../resources/build_success.png"/>
