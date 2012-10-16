@@ -5,4 +5,4 @@ Bundle-SymbolicName: tychodemo.bundle.tests
 Bundle-Version: 1.0.0.qualifier
 Fragment-Host: tychodemo.bundle;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: org.junit
+Require-Bundle: org.junit;bundle-version="4.0.0"
