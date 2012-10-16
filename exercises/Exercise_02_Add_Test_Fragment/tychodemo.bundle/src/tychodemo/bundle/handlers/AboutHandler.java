@@ -20,6 +20,6 @@ import org.eclipse.swt.widgets.Shell;
 public class AboutHandler {
 	@Execute
 	public void execute(@Named(IServiceConstants.ACTIVE_SHELL) Shell shell) {
-		MessageDialog.openInformation(shell, "About", "Hello Tycho Demo RCP!");
+		MessageDialog.openInformation(shell, "About", "Tycho Demo RCP");
 	}
 }
