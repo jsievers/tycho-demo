@@ -24,6 +24,6 @@ public class AboutHandler {
 	}
 
 	String getGreeting() {
-		return "Hello Tycho Demo RCP!";
+		return "Tycho Demo RCP";
 	}
 }
