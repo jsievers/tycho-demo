@@ -14,10 +14,10 @@ We will compile and run the plugin from the IDE and then show how to build it wi
 <ol>
 <li>Create a new e4 Application with name <tt>tychodemo.bundle</tt>
 <ul>
-<li><tt>File > New > Project > e4 > e4 Application Project</tt></li>
+<li><tt>File > New > Project > Eclipse 4 > Eclipse 4 Application Project</tt></li>
 <li>Enter "tychodemo.bundle" as project name</li>
 <li>In "Content", enter Name: "Tycho Demo Bundle"</li>
-<li>In "e4 Application", keep all default values and press Finish</li>
+<li>In "Eclipse 4 Application", keep all default values and press Finish</li>
 <table>
 <tr>
 <td valign="top"><img src ="resources/new_e4_app.png" /></td>
@@ -31,8 +31,9 @@ We will compile and run the plugin from the IDE and then show how to build it wi
 </ul>
 <li>Run the application to check if it works:
 <ul>
- <li>Open the Product definition file <tt>tychodemo.bundle.product</tt>, tab "Overview"</li>
- <li>Press "Launch an Eclipse application"<br/>
+ <li>Open the Product definition file <tt>tychodemo.bundle.product</tt></li>
+ <li>Open the tab "Dependencies" and press "Add Required Plug-ins" (this is a workaround, the generated product is not self-contained)</li>
+ <li>In the tab "Overview", press "Launch an Eclipse application"<br/>
  <img src="resources/product_1.png"/>
  </li>
  
@@ -73,7 +74,7 @@ This is expected, because the tycho build extension is not yet configured (see n
 
 <pre>
   &lt;properties&gt;
-    &lt;tycho-version&gt;0.14.1&lt;/tycho-version&gt;
+    &lt;tycho-version&gt;0.16.0&lt;/tycho-version&gt;
   &lt;/properties&gt;
 </pre>
 </li>
