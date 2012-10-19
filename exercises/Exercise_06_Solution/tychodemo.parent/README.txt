@@ -1,5 +1,4 @@
-Exercise 5: Add a product (solution)
-====================================
+Exercise 6: Use a target file (solution)
+========================================
 
-This folder contains the solution of exercise 5.
-
+This folder contains the solution of exercise 6.

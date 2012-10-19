@@ -49,7 +49,7 @@
 		<li>Rename <tt>site.xml</tt> to <tt>category.xml</tt> using Right-click <tt>Refactor > Rename...</tt><br /> <img src="../resources/rename.png" />
 
 		</li>
-		<li>Include the new project in the build: <ul>
+		<li>Add the the new project to the build (with packaging type <tt>eclipse-repository</tt>): <ul>
 			<li>Right-click on <tt>tychodemo.repository > Configure > Convert to Maven Project</tt></li>
 			<li>Enter the group ID <tt>tychodemo</tt>, version <tt>1.0.0-SNAPSHOT</tt> and packaging <tt>eclipse-repository</tt>. Background info: the packaging type <tt>eclipse-repository</tt> tells Tycho to build a p2 repository.
 				<br /><img src="../resources/add_pom.png" />
@@ -57,7 +57,7 @@
 			<li>Open the <tt>pom.xml</tt> of <tt>tychodemo.parent</tt> and click on <tt>Add...</tt> in the <tt>Modules</tt> section
 				<br /><img src="../resources/add_to_parent.png" />
 			</li>
-			<li>Select the <tt>tychodemo.bundle</tt> module, select <tt>Update POM parent section in selected projects</tt>, and hit <tt>OK</tt>
+			<li>Select the <tt>tychodemo.repository</tt> module, select <tt>Update POM parent section in selected projects</tt>, and hit <tt>OK</tt>
 				<br /><img src="../resources/add_to_parent_2.png" />
 			</li>
 		</ul></li>

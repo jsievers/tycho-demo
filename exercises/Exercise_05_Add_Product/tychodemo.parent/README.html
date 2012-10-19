@@ -7,10 +7,10 @@
 	<p align="center">
 		<a href="../../Exercise_04_Add_P2_Repository/tychodemo.parent/README.html">&lt;Previous Exercise</a>
 		| <a href="../../../README.html">TOC</a>
-<!-- 		| <a href="../../Exercise_06_Use_Target_File/tychodemo.parent/README.html">Next Exercise&gt;</a> -->
+		| <a href="../../Exercise_06_Use_Target_File/tychodemo.parent/README.html">Next Exercise&gt;</a>
 	</p>
 
-	<h2>Exercise 5: Add a product</h2>
+	<h2>Exercise 5: Build a product distribution</h2>
 
 	In this exercise, we build an installation of our RCP application and pack it into a ready-to-use ZIP archive.
 	<br />Offering an archive for download is a common way to distribute RCP applications.
@@ -22,8 +22,8 @@
 		<li>Select <tt>File > Switch Workspace > Other...</tt> and choose folder <a href="../">Exercise_05_Add_Product</a></li>
 		<li>Import all five projects from this folder into the workspace using <tt>File > Import > Existing Maven Projects</tt></li>
 		<li>Trigger a build on the parent POM: <ul>
-			<li>Right-click on <tt>tychodemo.parent > Run As > Maven</tt></li>
-			<li>If an launch configuration dialog appears, enter the goals <tt>clean install</tt> and hit <tt>Run</tt></li>
+			<li>Right-click on <tt>tychodemo.parent > Run As > Maven build</tt></li>
+			<li>If a launch configuration dialog appears, enter the goals <tt>clean install</tt> and hit <tt>Run</tt></li>
 		</ul></li>
 		<li>The build should succeed and build five modules <pre>
    tychodemo.parent 
@@ -34,7 +34,7 @@
 		</li>
 	</ul>
 
-	<h3>Building a product configuration file</h3>
+	<h3>Building a product distribution</h3>
 
 	<ol>
 		<li>Move the existing <tt>tychodemo.bundle.product</tt> file from the project <tt>tychodemo.bundle</tt> to the project <tt>tychodemo.repository</tt>
@@ -146,14 +146,10 @@
 	</ol>
 	<br />
 
-	<p>
-		Congratulations! You have now completed the EclipseCon Tycho tutorial.
-	</p>
-
 	<p align="center">
 		<a href="../../Exercise_04_Add_P2_Repository/tychodemo.parent/README.html">&lt;Previous Exercise</a>
 		| <a href="../../../README.html">TOC</a>
-<!-- 		| <a href="../../Exercise_06_Use_Target_File/tychodemo.parent/README.html">Next Exercise&gt;</a> -->
+		| <a href="../../Exercise_06_Use_Target_File/tychodemo.parent/README.html">Next Exercise&gt;</a>
 	</p>
 
 </body>
