@@ -11,17 +11,17 @@
 <h2>Exercise 2: Add a test fragment with a simple JUnit test</h2>
 
 In this exercise, we will add a simple JUnit test in a fragment to the tychodemo.bundle.<br/>
-We will run the test from eclipse as a JUnit plugin test and then show how the test can 
+We will run the test from Eclipse as a JUnit plugin test and then show how the test can 
 be built and run by Tycho by converting the test project to a Maven project.<br/>
 A failed test will also fail the headless build.<br/>
 <br/>
 
-As a starting point for your convenience, the result of step 1 <a href="../../Exercise_01_Create_RCP_Bundle/README.html">Create an RCP bundle</a> has been refactored:<br/>
+As a starting point for this exercise, we use a refactored version of the result of the first exercise:<br/>
 Common settings have been extracted to a parent POM <a href="pom.xml"><tt>tychodemo.parent</tt></a> from which all modules will inherit and which defines the reactor modules.<br/>
 
 <ol>
 <li> Select <tt>File > Switch Workspace > Other...</tt> and choose <a href="../">folder Exercise_02_Add_Test_Fragment</a>.</li>
-<li> Import the 2 projects from this folder into the new empty eclipse workspace using <tt>File > Import > Maven > Existing Maven Projects</tt><br/>
+<li> Import the two projects from this folder into the new empty Eclipse workspace using <tt>File > Import > Maven > Existing Maven Projects</tt><br/>
 <img src="../resources/import.png"/>
 </li>
 <li>Right-click on tychodemo.parent, <tt>Run As > Maven build</tt>, enter Goals: <tt>clean install</tt>.<br/>
@@ -105,7 +105,7 @@ Open <tt>AboutHandler.java</tt>, select the about text String and extract it int
    and the error <tt>Unknown packaging: eclipse-test-plugin</tt> must be gone now.
 	</li>
    <li> Right-click <tt>tychodemo.parent</tt>, <tt> Run As > Maven build</tt>, enter Goals: <tt>clean install</tt><br/>
-     Expected result: build should fail because of the same test failure we just saw in eclipse:<br/>
+     Expected result: build should fail because of the same test failure we just saw in Eclipse:<br/>
   <img src="../resources/failed_test_maven.png"/>
 </li>
    
@@ -115,7 +115,7 @@ Open <tt>AboutHandler.java</tt>, select the about text String and extract it int
   <img src="../resources/test_impl.png"/>
 	
 	</li>
-    <li>test should now succeed when executed in eclipse:<br/>
+    <li>test should now succeed when executed in Eclipse:<br/>
     <img src="../resources/test_success_eclipse.png"/>
 	</li>
 	<li><tt>Run As > Maven build</tt> on <tt>tychodemo.parent</tt> should now also succeed<br/>
