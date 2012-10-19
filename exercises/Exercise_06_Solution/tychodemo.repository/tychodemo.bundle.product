@@ -103,11 +103,11 @@
    </plugins>
 
    <features>
-      <feature id="org.eclipse.e4.rcp" version="1.1.0.v20120521-2329-8yFTIGIbGGduEZ6-7-jLx41nXj"/>
+      <feature id="tychodemo.feature" version="1.0.0.qualifier"/>
       <feature id="org.eclipse.rcp" version="4.2.1.v20120814-120134-7IAPA8BrHQicS-rjP0GbqK780kMy"/>
       <feature id="org.eclipse.emf.ecore"/>
+      <feature id="org.eclipse.e4.rcp"/>
       <feature id="org.eclipse.emf.common"/>
-      <feature id="tychodemo.feature" version="1.0.0.qualifier"/>
    </features>
 
    <configurations>
