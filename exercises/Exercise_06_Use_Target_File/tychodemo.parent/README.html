@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>EclipseCon 2011 Tycho Tutorial - Exercise 6</title>
+</head>
+<body>
+
+<p align="center">
+	<a href="../../Exercise_05_Add_Product/tychodemo.parent/README.html">&lt;Previous Exercise</a>
+	| <a href="../../../README.html">TOC</a>
+</p>
+
+<h2>Exercise 6: Use a target file</h2>
+
+In this exercise, we will make the project portable using a target definition file as target platform in Eclipse (instead of the "Running Platform").<br/>
+Then we will re-use the target file for the target definition in the Tycho build.
+
+<h3>Recovery option</h3>
+
+This section is optional and only needed if you want to catch up from exercise 5 or reset your workspace.
+
+<ul>
+<li>Select <tt>File > Switch Workspace > Other...</tt> and choose folder Exercise_06_Use_Target_File.<br/>
+		Import all 5 projects from this folder into the new empty eclipse workspace using <tt>File > Import > Existing Maven Projects</tt>
+</li>
+
+<li>Right-click on <tt>tychodemo.parent > Run As > Maven install</tt><br/>
+		The build should succeed and build 5 modules
+		<pre>
+   tychodemo.parent 
+   tychodemo.bundle 
+   tychodemo.bundle.tests
+   tychodemo.feature
+   tychodemo.repository
+		</pre>
+</li>
+</ul>
+
+<h3>Creating a target file to make the project portable</h3>
+
+In the Eclipse workspace, the plug-ins currently compile against the running Eclipse installation.
+This may lead to problems if other developers use a different version of Eclipse.<br/>
+As first part of this exercise, we will make the project portable by defining the Eclipse target platform through a target file.
+
+<ol>
+<li>Create a new general project <tt>tychodemo.target</tt>:<br/>
+	<ul>
+		<li><tt>CTRL+N &gt; General &gt; Project</tt><br/>
+			<img src="../resources/new_project.png"/></li>
+	</ul>
+	<ul>
+		<li>Enter the project name <tt>tychodemo.target</tt> and hit <tt>Finish</tt><br/>
+			(Note: Make sure the new project location folder is a sibling of the existing projects; deselect "Use default location" and enter the correct path if necessary.)<br/>
+			<img src="../resources/new_project_2.png"/></li>
+	</ul>
+</li>
+
+<li>In the <tt>tychodemo.target</tt> project, create a new, empty target definition called <tt>indigo.target</tt>:
+	<ul>
+		<li><tt>CTRL+N &gt; Plug-in Development &gt; Target Definition</tt><br/>
+			<img src="../resources/new_target.png"/></li>
+	</ul>
+	<ul>
+		<li>Enter the file name <tt>indigo.target</tt> and hit <tt>Finish</tt><br/>
+			<img src="../resources/new_target_2.png"/></li>
+	</ul>
+</li>
+
+<li>In editor for the <tt>indigo.target</tt>, add the <tt>Eclipse SDK</tt> feature from the Indigo repository <tt>http://download.eclipse.org/releases/indigo/</tt>:
+	<ul>
+		<li>Click <tt>Add...</tt></li>
+		<li>Select <tt>Software Site</tt> and click <tt>Next &gt;</tt><br/>
+			<img src="../resources/new_location.png"/></li>
+		<li>In the <tt>Work with</tt> field, paste the URL <tt>http://download.eclipse.org/releases/indigo/</tt> and press <tt>ENTER</tt>. Wait until the repository content is shown.<br/>
+			<img src="../resources/work_with_indigo_pending.png"/></li>
+		<li>Deselect <tt>Group by Category</tt>, enter <tt>Eclipse RCP</tt> in the filter text box and select the <tt>Eclipse RCP SDK</tt> feature. Deselect <tt>Include required software</tt> and hit <tt>Finish</tt><br/>
+			<img src="../resources/add_rcp_sdk_feature.png"/></li>
+	</ul>
+</li>
+
+<li>Set the target definition as target platform:
+	<ul>
+		<li>Wait until the target definition is resolved (optional). Click <tt>Set as Target Platform</tt><br/>
+			<img src="../resources/target_1_editor.png"/></li>
+		<li>This leads to a compilation problem: <tt>Bundle 'org.junit' cannot be resolved</tt><br/>
+			<img src="../resources/target_1_problems.png"/></li>
+	</ul>
+</li>
+
+<li>We need to add the JUnit bundle to the target platform. Do this by adding the <tt>Eclipse Java Development Tools</tt> feature:
+	<ul>
+		<li>In the editor of <tt>indigo.target</tt>, select the Indigo location and click <tt>Edit...</tt></li>
+		<li><em>If the dialog displays an error message,</em> close the dialog and open it again by clicking <tt>Edit...</tt> (cf. <a target="_blank" href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=275999" title="Bug 275999 &ndash; [target] edit software site does not set initial selection reliably">bug 275999</a>)<br/>
+			<img src="../resources/edit_location_error.png"/></li>
+		<li>Now the status text below the features should be <tt>1 item selected</tt></li>
+		<li>Enter <tt>Java Development Tools</tt> in the search text box and select the one feature from the list. Do <em>not</em> click finish yet!<br/>
+			<img src="../resources/add_jdt_feature.png"/></li>
+		<li>Clear the filter text box &ndash; the status text below the features list should now say <tt>2 items selected</tt> (cf. <a target="_blank" href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=309136" title="Bug 309136 &ndash; Software content selection wizard does not add filtered content">bug 309136</a>). Hit <tt>Finish</tt>.<br/>
+			<img src="../resources/add_jdt_feature_2.png"/></li>
+		<li>Once the target definition is resolved, the editor shows two features under the Indigo URL<br/>
+			<img src="../resources/target_2_editor.png"/></li>
+	</ul>
+</li>
+
+<li>Set the target definition as target platform. The compile error should now be resolved.</li>
+<li>Save the <tt>indigo.target</tt> file</li>
+
+</ol>
+
+<h3>Using the same target definition in the Tycho build</h3>
+
+Now that we have a target definition file, we can use the that file for the target platform configuration in Tycho. In this way, we can have be sure to have the target platform in Eclipse and Tycho &ndash; and no longer have the problem of keeping the target platform configurations in sync.      
+
+<ol start="8">
+
+<li>Add a <tt>pom.xml</tt> file in the <tt>tychodemo.target</tt> project root with the content below. (A separate project and this POM is needed to allow incremental builds, i.e. builds of parts of the reactor.)
+	<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+   xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+   &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+   &lt;parent&gt;
+      &lt;groupId&gt;tychodemo&lt;/groupId&gt;
+      &lt;artifactId&gt;tychodemo.parent&lt;/artifactId&gt;
+      &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+      &lt;relativePath&gt;../tychodemo.parent/pom.xml&lt;/relativePath&gt;
+   &lt;/parent&gt;
+
+   &lt;artifactId&gt;tychodemo.target&lt;/artifactId&gt;
+   &lt;packaging&gt;pom&lt;/packaging&gt;
+
+   &lt;build&gt;
+      &lt;plugins&gt;
+         &lt;plugin&gt;
+            &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+            &lt;artifactId&gt;build-helper-maven-plugin&lt;/artifactId&gt;
+            &lt;version&gt;1.3&lt;/version&gt;
+            &lt;executions&gt;
+               &lt;!-- make target file available for incremental builds --&gt;
+               &lt;execution&gt;
+                  &lt;id&gt;attach-artifacts&lt;/id&gt;
+                  &lt;phase&gt;package&lt;/phase&gt;
+                  &lt;goals&gt;
+                     &lt;goal&gt;attach-artifact&lt;/goal&gt;
+                  &lt;/goals&gt;
+                  &lt;configuration&gt;
+                     &lt;artifacts&gt;
+                        &lt;artifact&gt;
+                           &lt;!-- note: the file name must be ${classifier}.target --&gt;
+                           &lt;file&gt;indigo.target&lt;/file&gt;
+                           &lt;type&gt;target&lt;/type&gt;
+                           &lt;classifier&gt;indigo&lt;/classifier&gt;
+                        &lt;/artifact&gt;
+                     &lt;/artifacts&gt;
+                  &lt;/configuration&gt;
+               &lt;/execution&gt;
+            &lt;/executions&gt;
+         &lt;/plugin&gt;
+      &lt;/plugins&gt;
+   &lt;/build&gt;
+&lt;/project&gt;
+	</pre>
+</li>
+
+<li>Add the <tt>tychodemo.target</tt> project in <tt>modules</tt> section of <tt>tychodemo.parent</tt> POM:
+	<pre>   &lt;module&gt;../tychodemo.target&lt;/module&gt;
+</pre>
+</li>
+
+<li>Configure the build to use the <tt>helios.target</tt> file as target platform:
+	<ul>
+		<li>In the <tt>tychodemo.parent</tt> POM in the <tt>&lt;build&gt;&lt;plugins&gt;</tt> section, add the following build plugin configuration:
+			<pre>
+   &lt;plugin&gt;
+      &lt;groupId&gt;org.eclipse.tycho&lt;/groupId&gt;
+      &lt;artifactId&gt;target-platform-configuration&lt;/artifactId&gt;
+      &lt;version&gt;${tycho-version}&lt;/version&gt;
+      &lt;configuration&gt;
+         &lt;target&gt;
+            &lt;artifact&gt;
+               &lt;groupId&gt;tychodemo&lt;/groupId&gt;
+               &lt;artifactId&gt;tychodemo.target&lt;/artifactId&gt;
+               &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+               &lt;classifier&gt;indigo&lt;/classifier&gt;
+            &lt;/artifact&gt;
+         &lt;/target&gt;
+      &lt;/configuration&gt;
+   &lt;/plugin&gt;
+			</pre></li>
+		<li>Delete the <tt>repositories</tt> section in the parent POM (<a href="../resources/tychodemo.parent_pom.xml_without_bonus.txt">expected result</a>)</li>
+	</ul>
+</li>
+
+<li>Run the Tycho build: Right-click <tt>tychodemo.parent > Run As > Maven install</tt><br/>
+		The expected result is a build failure &ndash; the root cause can be seen at the start of the <tt>[ERROR]</tt> log output:<br/>
+		<img src="../resources/target_2_build_error.png"/>
+</li>
+
+<li>The product build needs the <tt>org.eclipse.equinox.executable</tt> feature, which contains the native launchers. Add this feature in the target file:
+	<ul>
+		<li>In the editor of <tt>indigo.target</tt>, select the Indigo URL and click <tt>Edit...</tt></li>
+		<li><em>If the dialog displays an error message,</em> close the dialog and open it again by clicking <tt>Edit...</tt></li>
+		<li>Type <tt>launchers</tt> in the search text box and select the one feature from the list. (Here, you just need to know the name of the <tt>org.eclipse.equinox.executable</tt> feature...)<br/>
+			<img src="../resources/add_launchers_feature.png"/></li>
+		<li>Clear the filter text box &ndash; the status text below the features list should now say <tt>3 items selected</tt>. Hit <tt>Finish</tt>.<br/>
+			<img src="../resources/add_launchers_feature_2.png"/></li>
+		<li>Once the target definition is resolved, the editor shows three features under the Indigo URL</li>
+	</ul>
+</li>
+
+<li>Save the <tt>indigo.target</tt> file
+</li>
+
+<li>Run the Tycho build: Right-click <tt>tychodemo.parent > Run As > Maven install</tt>. The build should now be successful again.
+</li>
+
+</ol>
+
+<p>This concludes this exercise. To recapitulate our achievements:
+<ul>
+	<li>We have created a target definition file in order to ensure that all developers of the project use the same target platform.</li>
+	<li>We have re-used the target definition file in the Tycho build configuration to have the same target platform in Tycho as in Eclipse.</li>
+	<li>We have now the possibility to manage the project's dependencies.</li>
+</ul></p>
+
+<hr/>
+
+<p><strong>Congratulations</strong>: You have now completed the Tycho tutorial. You now may want to
+<ul>
+	<li>Return to the <a href="../../Exercise_05_Add_Product/tychodemo.parent/README.html#bonus">bonus steps in exercise 5</a></li>
+	<li>Read more about <a href="http://www.eclipse.org/tycho/">Tycho</a> in the <a href="http://wiki.eclipse.org/Category:Tycho">Tycho documentation</a></li>
+</ul>
+</p>
+
+<!--
+
+<li>:
+	<ul>
+		<li><br/>
+			<img src="../resources/.png"/></li>
+	</ul>
+</li>
+
+-->
+
+<p align="center">
+	<a href="../../Exercise_05_Add_Product/tychodemo.parent/README.html">&lt;Previous Exercise</a>
+	| <a href="../../../README.html">TOC</a>
+</p>
+
+</body>
+</html> 
+ 
+
+
+
+
+
+   
+
+
