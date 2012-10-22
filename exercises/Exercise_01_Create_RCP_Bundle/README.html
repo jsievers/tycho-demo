@@ -29,6 +29,7 @@ We will compile and run the plugin from the IDE and then show how to build it wi
 </tr>
 </table>
 </ul>
+</li>
 <li>Run the application to check if it works:
 <ul>
  <li>Open the Product definition file <tt>tychodemo.bundle.product</tt></li>
@@ -51,6 +52,7 @@ We will compile and run the plugin from the IDE and then show how to build it wi
 <img src ="resources/about_3.png" />
  </li>
  </ul>
+ </li>
  <li>To be independent of network access to <tt><a href="http://repo1.maven.org">Maven Central (http://repo1.maven.org)</a></tt>, we will use the pre-filled local maven repository from the USB stick:<br/>
 Copy the content of folder <tt>tutorial/maven_repository/*</tt> to <tt>~/.m2/repository/</tt> (Linux/Mac) or <tt>%USERPROFILE%/.m2/repository/</tt> (Windows).
 </li>
@@ -70,6 +72,7 @@ This is expected, because the tycho build extension is not yet configured (see n
  
 <li><a name="remove_build_section"/>Open <tt>pom.xml</tt>, go to Tab "pom.xml". Remove the complete <tt>&lt;build&gt;</tt> element (this is an <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=374742">m2eclipse bug</a>).<br/>
    <img src ="resources/remove_build_section.png" />
+</li>
 <li> To define the tycho version to be used, add this snippet into <tt>&lt;project&gt;</tt> :
 
 <pre>
