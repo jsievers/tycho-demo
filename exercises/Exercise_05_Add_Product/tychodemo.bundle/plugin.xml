@@ -8,16 +8,16 @@
             name="tychodemo.bundle"
             application="org.eclipse.e4.ui.workbench.swt.E4Application">
          <property
-               name="appName"
-               value="tychodemo.bundle">
-         </property>
-         <property
-               name="applicationXMI"
-               value="tychodemo.bundle/Application.e4xmi">
+               name="clearPersistedState"
+               value="true">
          </property>
          <property
                name="applicationCSS"
                value="platform:/plugin/tychodemo.bundle/css/default.css">
+         </property>
+         <property
+               name="appName"
+               value="tychodemo.bundle">
          </property>
       </product>
    </extension>
