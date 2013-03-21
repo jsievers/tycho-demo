@@ -127,8 +127,12 @@ Specify the p2 repository for resolving dependencies: <br/>
     &lt;/repository&gt;
   &lt;/repositories&gt;
 </pre></li>
-	<li>In order to be independent of the network, replace the URL in the snippet with a <tt>file:</tt> URL pointing to your <a href="../../p2_repository">local copy</a>  of the p2 repository from the USB stick.
-		<br/>This p2 repository contains is a subset of the <a href="http://download.eclipse.org/releases/juno/">Juno p2 repository</a>.<br/>
+	<li>In order to be independent of network access to eclipse.org:
+	<ul>
+        <li>Open <tt>~/.m2/repository/settings.xml</tt> (Linux/Mac) or <tt>%USERPROFILE%/.m2/repository/settings.xml</tt> (Windows)</li>
+		<li>Replace the mirror URL <tt>file:/TODO/path/to/tutorial/p2_repository</tt> with a real <tt>file:</tt> URL pointing to your <a href="../../p2_repository">local copy</a>  of the p2 repository from the USB stick.</li>
+		</ul>
+		<br/>This p2 repository contains a subset of the <a href="http://download.eclipse.org/releases/kepler/">Kepler p2 repository</a>.<br/>
 	</li>
 </ul>
 </li>
