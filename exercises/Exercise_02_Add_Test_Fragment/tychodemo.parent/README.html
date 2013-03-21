@@ -25,14 +25,6 @@ Common settings have been extracted to a parent POM <a href="pom.xml"><tt>tychod
 	<br/><img src="../resources/import.png" />
 	<br/><img src="../resources/import_2.png" />
 </li>
-<li>If you are not connected to the Internet, use your <a href="../../../p2_repository">local copy</a> of the p2 repository from the USB stick for resolving dependencies:<ul>
-	<li>Open the file <tt>tychodemo.parent/pom.xml</tt> and switch to the <tt>pom.xml</tt> tab
-		<br/><img src="../resources/local_p2_repository.png" />
-	</li>
-	<li>In the <tt>&lt;repositories&gt;</tt> section, replace <tt>http://download.eclipse.org/releases/juno/</tt> by a <tt>file:</tt> URL pointing to the <a href="../../../p2_repository">local p2 repository</a>
-		<br/><img src="../resources/local_p2_repository_2.png" />
-	</li>
-</ul></li>
 <li>Right-click on <tt>tychodemo.parent > Run As > Maven build</tt>, enter Goals: <tt>clean install</tt>.<br/>
 The build should succeed and build two modules:<br/>
 <img src="../resources/build_success.png"/>

@@ -21,10 +21,6 @@
 	<ul>
 		<li>Select <tt>File > Switch Workspace > Other...</tt> and choose the folder <a href="../">Exercise_04_Add_P2_Repository</a></li>
 		<li>Import all four projects from this folder into the workspace using <tt>File > Import > Existing Maven Projects</tt></li>
-		<li>Configure your <a href="../../../p2_repository">local copy</a> of the p2 repository from the USB stick as target platform of the build:<ul>
-			<li>Open the file <tt>tychodemo.parent/pom.xml</tt> and switch to the <tt>pom.xml</tt> tab</li>
-			<li>In the <tt>&lt;repositories&gt;</tt> section, replace <tt>http://download.eclipse.org/releases/juno/</tt> by a <tt>file:</tt> URL pointing to the <a href="../../../p2_repository">local p2 repository</a></li>
-		</ul></li>
 		<li>Trigger a build on the parent POM: <ul>
 			<li>Right-click on <tt>tychodemo.parent > Run As > Maven build</tt></li>
 			<li>If a launch configuration dialog appears, enter the goals <tt>clean install</tt> and hit <tt>Run</tt></li>

@@ -21,10 +21,6 @@ This section is optional and only needed if you want to catch up from exercise 2
 <ul>
 <li>Select <tt>File > Switch Workspace > Other...</tt> and choose the folder <a href="../">Exercise_03_Add_Feature</a>.<br/>
   Import all three projects from this folder into the new empty Eclipse workspace using <tt>File &gt; Import &gt; Existing Maven Projects</tt></li>
-<li>Configure your <a href="../../../p2_repository">local copy</a> of the p2 repository from the USB stick as target platform of the build:<ul>
-	<li>Open the file <tt>tychodemo.parent/pom.xml</tt> and switch to the <tt>pom.xml</tt> tab</li>
-	<li>In the <tt>&lt;repositories&gt;</tt> section, replace <tt>http://download.eclipse.org/releases/juno/</tt> by a <tt>file:</tt> URL pointing to the <a href="../../../p2_repository">local p2 repository</a></li>
-</ul></li>
 <li> Right-click on <tt>tychodemo.parent, Run As > Maven build</tt>, enter Goals: <tt>clean install</tt>.<br/>
   The build should succeed and build three modules
    <pre>
