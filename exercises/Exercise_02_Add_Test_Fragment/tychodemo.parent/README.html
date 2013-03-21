@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>EclipseCon 2012 Tycho Tutorial - Exercise 2</title>
+<title>EclipseCon 2013 Tycho Tutorial - Exercise 2</title>
 </head>
 <body>
 <p align="center">
@@ -74,7 +74,7 @@ Open <tt>AboutHandler.java</tt>, select the about text String and extract it int
    <li>choose <tt>getGreeting()</tt> as test method for which a stub will be created<br/>
 <img src="../resources/new_junit_testcase_2.png"/>
    </li>
-   <li>confirm "Add org.junit to required bundles" if prompted and make sure that the minimum version required for <tt>org.junit</tt> is <tt>4.0.0</tt></li>
+   <li>confirm "Add org.junit to required bundles" if prompted</li>
 <img src="../resources/junit_min_version.png"/>
   </ul>
 </li>
@@ -100,8 +100,6 @@ Open <tt>AboutHandler.java</tt>, select the about text String and extract it int
    Again, you will get an error <tt>Unknown packaging: eclipse-test-plugin</tt> because the tycho build extension is not configured yet. Ignore this error for now.
    </li>
    </ul>
-   <li> Same as in <a href="../../Exercise_01_Create_RCP_Bundle/README.html#remove_build_section">exercise 1</a>, remove the unnecessary <tt>&lt;build&gt;</tt> section from the newly created <tt>pom.xml</tt>.
-   </li>
 </li>
    
    <li><a name="add_module"/>Add the module to <tt>&lt;modules&gt;</tt> section of the <a href="pom.xml">parent pom.xml</a>:
