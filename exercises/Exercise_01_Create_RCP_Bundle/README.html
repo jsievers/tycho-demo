@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>EclipseCon 2012 Tycho Tutorial - Exercise 1</title>
+<title>EclipseCon 2013 Tycho Tutorial - Exercise 1</title>
 </head>
 <body>
 <p align="center">
@@ -33,7 +33,6 @@ We will compile and run the plugin from the IDE and then show how to build it wi
 <li>Run the application to check if it works:
 <ul>
  <li>Open the Product definition file <tt>tychodemo.bundle.product</tt></li>
- <li>Open the tab "Dependencies" and press "Add Required Plug-ins" (this is a workaround, the generated product is not self-contained)</li>
  <li>In the tab "Overview", press "Launch an Eclipse application"<br/>
  <img src="resources/product_1.png"/>
  </li>
@@ -70,14 +69,12 @@ This is expected, because the tycho build extension is not yet configured (see n
    <img src ="resources/build_error.png" />
 </li>
  
-<li><a name="remove_build_section"/>Open <tt>pom.xml</tt>, go to Tab "pom.xml". Remove the complete <tt>&lt;build&gt;</tt> element (this is an <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=374742">m2eclipse bug</a>).<br/>
-   <img src ="resources/remove_build_section.png" />
-</li>
+<li>Open <tt>pom.xml</tt>, go to Tab "pom.xml". </li>
 <li> To define the tycho version to be used, add this snippet into <tt>&lt;project&gt;</tt> :
 
 <pre>
   &lt;properties&gt;
-    &lt;tycho-version&gt;0.16.0&lt;/tycho-version&gt;
+    &lt;tycho-version&gt;0.17.0&lt;/tycho-version&gt;
   &lt;/properties&gt;
 </pre>
 </li>
@@ -124,9 +121,9 @@ Specify the p2 repository for resolving dependencies: <br/>
   &lt;repositories&gt;
     &lt;!-- configure p2 repository to resolve against --&gt;
     &lt;repository&gt;
-      &lt;id&gt;juno&lt;/id&gt;
+      &lt;id&gt;eclipse-platform-m6&lt;/id&gt;
       &lt;layout&gt;p2&lt;/layout&gt;
-      &lt;url&gt;http://download.eclipse.org/releases/juno/&lt;/url&gt;
+      &lt;url&gt;http://download.eclipse.org/eclipse/updates/4.3milestones/S-4.3M6-201303141330&lt;/url&gt;
     &lt;/repository&gt;
   &lt;/repositories&gt;
 </pre></li>
