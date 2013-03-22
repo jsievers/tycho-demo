@@ -7,12 +7,12 @@
 <p align="center">
  <a href="../../README.html">TOC</a> | <a href="../Exercise_02_Add_Test_Fragment/tychodemo.parent/README.html">Next Exercise&gt;</a> 
 </p>
-<h2>Exercise 1: Create and build a "Hello World" e4 RCP plugin using Tycho</h2>
+<h2>Exercise 1: Create and build a plugin with an Eclipse 4 sample application</h2>
 
-In this exercise, we will use the e4 tools to create a simple "Hello World" e4 Rich Client Platform plugin.<br/>
-We will compile and run the plugin from the IDE and then show how to build it with tycho by converting it to Maven project.
+In this exercise, we will use the Eclipse 4 tools to create a plugin with a simple Eclipse 4 Rich Client Platform application.<br/>
+We will compile and run the plugin from the IDE and then show how to build it with Tycho by converting it to Maven project.
 <ol>
-<li>Create a new e4 Application with name <tt>tychodemo.bundle</tt>
+<li>Create a new Eclipse 4 sample application in a plug-in called <tt>tychodemo.bundle</tt>
 <ul>
 <li><tt>File > New > Project > Eclipse 4 > Eclipse 4 Application Project</tt></li>
 <li>Enter "tychodemo.bundle" as project name</li>
@@ -45,7 +45,7 @@ We will compile and run the plugin from the IDE and then show how to build it wi
   <img src="resources/about_1.png"/>
  
  </li>
- <li>Open <tt>tychodemo.bundle.handlers.AboutHandler</tt> and change the about text from <tt>"e4 Application example."</tt> to <tt>"Tycho Demo RCP"</tt><br/>
+ <li>Open <tt>tychodemo.bundle.handlers.AboutHandler</tt> and change the about text from <tt>"Eclipse 4 Application example."</tt> to <tt>"Tycho Demo RCP"</tt><br/>
  <img src ="resources/about_2.png" /></li>
 <li>Open <tt>tychodemo.bundle.product</tt> and launch the Eclipse application again. Open the <tt>Help > About</tt> dialog. You should see your message now: <br/>
 <img src ="resources/about_3.png" />
@@ -66,12 +66,12 @@ NOTE: If you have already used maven before, you may want to save a backup of yo
  Note that <tt>MANIFEST/Bundle-SymbolicName == POM/artifactId</tt> and <tt>MANIFEST/&lt;Bundle-Version&gt;.qualifier == POM/&lt;version&gt;-SNAPSHOT</tt>
 <li>
 You will get a build error on the newly created file <tt>pom.xml</tt>: <tt>"Project build error: Unknown packaging: eclipse-plugin"</tt>.<br/>
-This is expected, because the tycho build extension is not yet configured (see next steps).<br/>
+This is expected, because the Tycho build extension is not yet configured (see next steps).<br/>
    <img src ="resources/build_error.png" />
 </li>
  
 <li>Open <tt>pom.xml</tt>, go to Tab "pom.xml". </li>
-<li> To define the tycho version to be used, add this snippet into <tt>&lt;project&gt;</tt> :
+<li> To define the Tycho version to be used, add this snippet into <tt>&lt;project&gt;</tt> :
 
 <pre>
   &lt;properties&gt;
@@ -85,7 +85,7 @@ This is expected, because the tycho build extension is not yet configured (see n
   &lt;build&gt;
     &lt;plugins&gt;
       &lt;plugin&gt;
-        &lt;!-- enable tycho build extension --&gt;
+        &lt;!-- enable the Tycho build extension --&gt;
         &lt;groupId&gt;org.eclipse.tycho&lt;/groupId&gt;
         &lt;artifactId&gt;tycho-maven-plugin&lt;/artifactId&gt;
         &lt;version&gt;${tycho-version}&lt;/version&gt;
