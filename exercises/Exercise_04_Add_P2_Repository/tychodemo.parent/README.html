@@ -17,7 +17,7 @@
 
 	<h3>Recovery option</h3>
 
-	This section is optional and only needed if you want to catch up from exercise 3 or reset your workspace.
+	This section is optional and only needed if you want to recover from a problem in exercise 3.
 	<ul>
 		<li>Select <tt>File > Switch Workspace > Other...</tt> and choose the folder <a href="../">Exercise_04_Add_P2_Repository</a></li>
 		<li>Import all four projects from this folder into the workspace using <tt>File > Import > Existing Maven Projects</tt></li>
@@ -42,14 +42,16 @@
 			<br /><img src="../resources/new_updatesite.png" />
 			<br /><img src="../resources/new_updatesite_2.png" />
 		</li>
-		<li>In <tt>site.xml</tt>, create a new category <tt>tychodemo.category</tt> and add the feature <tt>tychodemo.feature</tt> to it:<br /> <img src="../resources/new_category.png" /><br /> <img
+		<li>Rename the <tt>site.xml</tt> to <tt>category.xml</tt> using right-click <tt>Refactor > Rename...</tt>
+			<br /><img src="../resources/category_xml_rename.png" />
+		</li>
+		<li>Open the <tt>category.xml</tt>. If the editor shows the error "Unable to open editor..." (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=404118">bug 404118</a>), explicitly select the right editor: Right-click on the <tt>category.xml > Open With > Category Manifest Editor</tt>
+			<br /><img src="../resources/category_xml_open.png" />
+		</li>
+		<li>In the <tt>category.xml</tt> editor, create a new category <tt>tychodemo.category</tt> and add the feature <tt>tychodemo.feature</tt> to it:<br /> <img src="../resources/new_category.png" /><br /> <img
 			src="../resources/add_feature.png" /><br />
-
 		</li>
-		<li>Rename <tt>site.xml</tt> to <tt>category.xml</tt> using Right-click <tt>Refactor > Rename...</tt><br /> <img src="../resources/rename.png" />
-
-		</li>
-		<li>Add the the new project to the build (with packaging type <tt>eclipse-repository</tt>): <ul>
+		<li>Add the the new project to the build with <tt>eclipse-repository</tt> packaging type: <ul>
 			<li>Right-click on <tt>tychodemo.repository > Configure > Convert to Maven Project</tt></li>
 			<li>Enter the group ID <tt>tychodemo</tt>, version <tt>1.0.0-SNAPSHOT</tt> and packaging <tt>eclipse-repository</tt>. Background info: the packaging type <tt>eclipse-repository</tt> tells Tycho to build a p2 repository.
 				<br /><img src="../resources/add_pom.png" />
@@ -59,6 +61,9 @@
 			</li>
 			<li>Select the <tt>tychodemo.repository</tt> module, select <tt>Update POM parent section in selected projects</tt>, and hit <tt>OK</tt>
 				<br /><img src="../resources/add_to_parent_2.png" />
+			</li>
+			<li>
+				If the problems view shows an error "Project configuration is not up-to-date with pom.xml", simply apply the quick fix for it.
 			</li>
 		</ul></li>
 		<li>Run the build of <tt>tychodemo.parent</tt>, e.g. by selecting <tt>tychodemo.parent</tt> from the run history
