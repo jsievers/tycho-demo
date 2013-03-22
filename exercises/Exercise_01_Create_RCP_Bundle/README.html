@@ -53,7 +53,8 @@ We will compile and run the plugin from the IDE and then show how to build it wi
  </ul>
  </li>
  <li>To be independent of network access to <tt><a href="http://repo1.maven.org">Maven Central (http://repo1.maven.org)</a></tt>, we will use the pre-filled local maven repository from the USB stick:<br/>
-Copy the content of folder <tt>tutorial/maven_repository/*</tt> to <tt>~/.m2/repository/</tt> (Linux/Mac) or <tt>%USERPROFILE%/.m2/repository/</tt> (Windows).
+Copy the folder <tt>.m2/</tt> to your user home directory <tt>~</tt> (Linux/Mac) or <tt>%USERPROFILE%</tt> (Windows).<br/>
+NOTE: If you have already used maven before, you may want to save a backup of your <tt>~/.m2/settings.xml</tt> file.
 </li>
 
  <li><a name="convert_to_maven"/>Right-click the <tt>tychodemo.bundle</tt> project and select <tt>Configure > Convert to Maven Project</tt><br/>
@@ -129,7 +130,7 @@ Specify the p2 repository for resolving dependencies: <br/>
 </pre></li>
 	<li>In order to be independent of network access to eclipse.org:
 	<ul>
-        <li>Open <tt>~/.m2/repository/settings.xml</tt> (Linux/Mac) or <tt>%USERPROFILE%/.m2/repository/settings.xml</tt> (Windows)</li>
+        <li>Open <tt>~/.m2/settings.xml</tt> (Linux/Mac) or <tt>%USERPROFILE%/.m2/settings.xml</tt> (Windows)</li>
 		<li>Replace the mirror URL <tt>file:/TODO/path/to/tutorial/p2_repository</tt> with a real <tt>file:</tt> URL pointing to your <a href="../../p2_repository">local copy</a>  of the p2 repository from the USB stick.</li>
 		</ul>
 		<br/>This p2 repository contains a subset of the <a href="http://download.eclipse.org/releases/kepler/">Kepler p2 repository</a>.<br/>
