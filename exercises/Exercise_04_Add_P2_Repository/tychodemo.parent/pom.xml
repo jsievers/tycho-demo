@@ -25,7 +25,7 @@
 		<repository>
 			<id>eclipse-platform-m6</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/eclipse/updates/4.3milestones/S-4.3M6-201303141330</url>
+			<url>http://download.eclipse.org/eclipse/updates/4.3</url>
 		</repository>
 	</repositories>
 
