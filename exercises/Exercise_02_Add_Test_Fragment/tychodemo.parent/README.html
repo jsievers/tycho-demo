@@ -4,137 +4,124 @@
 <title>EclipseCon 2013 Tycho Tutorial - Exercise 2</title>
 </head>
 <body>
-<p align="center">
-<a href="../../Exercise_01_Create_RCP_Bundle/README.html">&lt;Previous Exercise</a> | <a href="../../../README.html">TOC</a> | <a href="../../Exercise_03_Add_Feature/tychodemo.parent/README.html">Next Exercise&gt;</a> 
-</p>
+	<p align="center">
+		<a href="../../Exercise_01_Create_RCP_Bundle/README.html">&lt;Previous Exercise</a>
+		| <a href="../../../README.html">TOC</a>
+		| <a href="../../Exercise_03_Add_Feature/tychodemo.parent/README.html">Next	Exercise&gt;</a>
+	</p>
 
-<h2>Exercise 2: Add a test fragment with a simple JUnit test</h2>
+	<h2>Exercise 2: Add a test fragment with a simple JUnit test</h2>
 
-In this exercise, we will add a simple JUnit test in a fragment to the tychodemo.bundle.<br/>
-We will run the test from Eclipse as a JUnit plugin test and then show how the test can 
-be built and run by Tycho by converting the test project to a Maven project.<br/>
-A failed test will also fail the headless build.<br/>
-<br/>
+	In this exercise, we will add a simple JUnit test in a fragment to the tychodemo.bundle.
+	<br />We will run the test from Eclipse as a JUnit plugin test and then show how the test can
+	be built and run by Tycho by converting the test project to a Maven project.
+	<br />A failed test will also fail the headless build.
+	<br />
+	<br />As a starting point for this exercise, we use a refactored version of the result of the first exercise:
+	<br />Common settings have been extracted to a parent POM <a href="pom.xml"><tt>tychodemo.parent</tt></a> from which all modules will inherit and which defines the reactor modules.
+	<br />
 
-As a starting point for this exercise, we use a refactored version of the result of the first exercise:<br/>
-Common settings have been extracted to a parent POM <a href="pom.xml"><tt>tychodemo.parent</tt></a> from which all modules will inherit and which defines the reactor modules.<br/>
-
-<ol>
-<li> Select <tt>File > Switch Workspace > Other...</tt> and choose the folder <a href="../">Exercise_02_Add_Test_Fragment</a>.</li>
-<li> Import the two projects from this folder into the workspace using <tt>File > Import > Maven > Existing Maven Projects</tt>
-	<br/><img src="../resources/import.png" />
-	<br/><img src="../resources/import_2.png" />
-</li>
-<li>Right-click on <tt>tychodemo.parent > Run As > Maven build</tt>, enter Goals: <tt>clean install</tt>.<br/>
-The build should succeed and build two modules:<br/>
-<img src="../resources/build_success.png"/>
-</li>
-<li> Create a new fragment project <tt>tychodemo.bundle.tests</tt> with fragment host <tt>tychodemo.bundle</tt>:<br/>
-     <tt>File > New > Project > Plug-in Development > Fragment Project</tt><br/>
-	<table>
-	 <tr>
-		<td valign="top"><img src="../resources/new_fragment.png"/></td>
-		<td valign="top"><img src="../resources/new_fragment_0.png"/></td>
-	 </tr>
-	 <tr>
-		<td valign="top"><img src="../resources/fragment_host.png"/></td><td></td>
-	 </tr>
-	</table>
-<br/>
-  Note: 
-           As opposed to classic maven projects, tests are always in a separate module
-           because otherwise we would pollute productive code with test-scoped dependencies in MANIFEST. <br/>
-           We use a fragment because: 
-		   <ol>
-            <li> otherwise we would have to export packages of classes under test in MANIFEST</li>
-            <li>we want to be able to test package-private members</li>
+	<ol>
+		<li>Select <tt>File > Switch Workspace > Other...</tt> and choose the folder <a href="../">Exercise_02_Add_Test_Fragment</a>.</li>
+		<li>Import the two projects from this folder into the workspace using <tt>File > Import > Maven > Existing Maven Projects</tt>
+			<br /><img src="../resources/import.png" />
+			<br /><img src="../resources/import_2.png" />
+		</li>
+		<li>Right-click on <tt>tychodemo.parent > Run As > Maven build</tt>, enter Goals: <tt>clean install</tt>.
+			<br />The build should succeed and build two modules:
+			<br /><img src="../resources/build_success.png" />
+		</li>
+		<li>Create a new fragment project <tt>tychodemo.bundle.tests</tt> with fragment host <tt>tychodemo.bundle</tt>:
+			<br /><tt>File > New > Project > Plug-in Development > Fragment Project</tt>
+			<br />
+			<table>
+				<tr>
+					<td valign="top"><img src="../resources/new_fragment.png" /></td>
+					<td valign="top"><img src="../resources/new_fragment_0.png" /></td>
+				</tr>
+				<tr>
+					<td valign="top"><img src="../resources/fragment_host.png" /></td>
+					<td></td>
+				</tr>
+			</table>
+			<br />Note: As opposed to classic maven projects, tests are always in a separate module
+			because otherwise we would pollute productive code with test-scoped dependencies in MANIFEST.
+			<br />We use a fragment because:
+			<ol>
+				<li>otherwise we would have to export packages of classes under test in MANIFEST</li>
+				<li>we want to be able to test package-private members</li>
 			</ol>
-</li>
-<li>
-First we create a method which we want to test: <br/>
-Open <tt>AboutHandler.java</tt>, select the about text String and extract it into method <tt>getGreeting()</tt> with default visibility (package-private) using <tt>Refactor > Extract Method</tt><br/>
-<img src="../resources/extract_method.png"/><br/>
-<img src="../resources/extract_method_2.png"/>
-</li>
-<li> In the fragment project, create a new JUnit test case <tt>tychodemo.bundle.handlers.AboutHandlerTest</tt>
-  <ul>
-   <li><tt>File > New > Other > JUnit Test Case</tt>
-   </li>
-   <li>choose <tt>tychodemo.bundle.handlers.AboutHandler</tt> as class under test<br/>
-<img src="../resources/new_junit_testcase_1.png"/>
-   </li>
-   <li>choose <tt>getGreeting()</tt> as test method for which a stub will be created<br/>
-<img src="../resources/new_junit_testcase_2.png"/>
-   </li>
-   <li>confirm "Add org.junit to required bundles" if prompted</li>
-<img src="../resources/junit_min_version.png"/>
-  </ul>
-</li>
-<li> Run the test: Right-click, <tt>Run As > JUnit Plugin Test</tt><br/>
-<img src="../resources/run_junit.png"/>
+		</li>
+		<li>First we create a method which we want to test:
+			<br />Open <tt>AboutHandler.java</tt>, select the about text String and extract it into method <tt>getGreeting()</tt> with default visibility (package-private) using <tt>Refactor > Extract Method</tt>
+			<br /><img src="../resources/extract_method.png" /><br /> <img src="../resources/extract_method_2.png" />
+		</li>
+		<li>In the fragment project, create a new JUnit test case <tt>tychodemo.bundle.handlers.AboutHandlerTest</tt> <ul>
+			<li><tt>File > New > Other > JUnit Test Case</tt></li>
+			<li>choose <tt>tychodemo.bundle.handlers.AboutHandler</tt> as class under test
+				<br /><img src="../resources/new_junit_testcase_1.png" />
+			</li>
+			<li>choose <tt>getGreeting()</tt> as test method for which a stub will be created
+				<br /> <img src="../resources/new_junit_testcase_2.png" />
+			</li>
+			<li>confirm "Add org.junit to required bundles" if prompted
+				<br /><img src="../resources/junit_min_version.png" />
+			</li></ul>
+		</li>
+		<li>Run the test: Right-click, <tt>Run As > JUnit Plugin Test</tt>
+			<br /> <img src="../resources/run_junit.png" />
+			<ul>
+				<li>expected result: the test should fail with <tt>"java.lang.AssertionError: Not yet implemented"</tt></li>
+				<li>Note: make sure that both <tt>tychodemo.bundle</tt> as well as <tt>tychodemo.bundle.tests</tt> are active
+					in the "Plugins" tab of the launch configuration
+					(Use "Launch with: Plug-ins selected below only")
+				</li>
+			</ul>
+			<img src="../resources/failed_test.png" />
+		</li>
+		<li>Convert the test fragment project to a Maven project and add it as a module to the parent: <ul>
+			<li>Same as in <a href="../../Exercise_01_Create_RCP_Bundle/README.html#convert_to_maven">exercise 1</a>, right-click the project <tt>tychodemo.bundle.tests</tt> and choose <tt>Configure > Convert to Maven Project</tt>.</li>
+			<li>Enter groupId: <tt>tychodemo</tt>, Version:<tt>1.0.0-SNAPSHOT</tt> and Packaging: <tt>eclipse-test-plugin</tt>
+				<br /><img src="../resources/create_pom.png" />
+				<br />Note the packaging type <tt>eclipse-test-plugin</tt> which indicates this bundle or fragment contains tests which should be executed during build.
+				<br />Again, you will get an error <tt>Unknown packaging: eclipse-test-plugin</tt> because the tycho build extension is not configured yet. Ignore this error for now.
+			</li></ul>
+		</li>
 
-  <ul>
-  <li> expected result: the test should fail with <tt>"java.lang.AssertionError: Not yet implemented"</tt></li>
-  <li>Note: make sure that both <tt>tychodemo.bundle</tt> as well as <tt>tychodemo.bundle.tests</tt> are active 
-          in the "Plugins" tab of the launch configuration
-          (Use "Launch with: Plug-ins selected below only")</li>
-  </ul>
-  <img src="../resources/failed_test.png"/>
+		<li><a name="add_module" />Add the module to <tt>&lt;modules&gt;</tt> section of the <a href="pom.xml">parent pom.xml</a>: 
+			Open <tt>tychodemo.parent/pom.xml</tt>, on the "Overview" tab in the "Modules" section, press <tt>Add...</tt>.
+			<br /><img src="../resources/add_module_1.png" />
+			<br />Select <tt>tychodemo.bundle.tests</tt> and <tt>Update POM parent in selected projects</tt>:
+			<br /><img src="../resources/add_module_2.png" />
+			<br />Expected result is a new module
+			<br /><img src="../resources/add_module_3.png" />
+			<br /> and the error <tt>Unknown packaging: eclipse-test-plugin</tt> must be gone now.
+		</li>
+		<li>Right-click <tt>tychodemo.parent</tt>, <tt> Run As > Maven build</tt>, enter Goals: <tt>clean install</tt>
+			<br />Expected result: build should fail because of the same test failure we just saw in Eclipse:
+			<br /><img src="../resources/failed_test_maven.png" />
+		</li>
 
-</li>
-<li> Convert the test fragment project to a Maven project and add it as a module to the parent:
-  <ul>
-  <li>Same as in <a href="../../Exercise_01_Create_RCP_Bundle/README.html#convert_to_maven">exercise 1</a>, right-click the project <tt>tychodemo.bundle.tests</tt> and choose <tt>Configure > Convert to Maven Project</tt>.</li>
-  <li>Enter groupId: <tt>tychodemo</tt>, Version:<tt>1.0.0-SNAPSHOT</tt> and Packaging: <tt>eclipse-test-plugin</tt><br/>
-  <img src="../resources/create_pom.png"/><br/>
-  
-   Note the packaging type <tt>eclipse-test-plugin</tt> which indicates this bundle or fragment contains tests which should be executed during build.<br/>
-   Again, you will get an error <tt>Unknown packaging: eclipse-test-plugin</tt> because the tycho build extension is not configured yet. Ignore this error for now.
-   </li>
-   </ul>
-</li>
-   
-   <li><a name="add_module"/>Add the module to <tt>&lt;modules&gt;</tt> section of the <a href="pom.xml">parent pom.xml</a>:
-   Open <tt>tychodemo.parent/pom.xml</tt>, on the "Overview" tab in the "Modules" section, press <tt>Add...</tt>.<br/>
-  <img src="../resources/add_module_1.png"/><br/>
-  Select <tt>tychodemo.bundle.tests</tt> and <tt>Update POM parent in selected projects</tt>:<br/>
-  <img src="../resources/add_module_2.png"/><br/>
-  Expected result is a new module<br/>
-  <img src="../resources/add_module_3.png"/><br/>
-   and the error <tt>Unknown packaging: eclipse-test-plugin</tt> must be gone now.
-	</li>
-   <li> Right-click <tt>tychodemo.parent</tt>, <tt> Run As > Maven build</tt>, enter Goals: <tt>clean install</tt><br/>
-     Expected result: build should fail because of the same test failure we just saw in Eclipse:<br/>
-  <img src="../resources/failed_test_maven.png"/>
-</li>
-   
-<li> Implement the test:
-  <ul>
-   <li>assert that <tt>getGreeting()</tt> contains <tt>"Tycho Demo"</tt><br/>
-  <img src="../resources/test_impl.png"/>
-	
-	</li>
-    <li>test should now succeed when executed in Eclipse:<br/>
-    <img src="../resources/test_success_eclipse.png"/>
-	</li>
-	<li><tt>Run As > Maven build</tt> on <tt>tychodemo.parent</tt> should now also succeed<br/>
-    <img src="../resources/test_success_maven.png"/>
-	</li>
-  </ul>
+		<li>Implement the test:
+			<ul>
+				<li>assert that <tt>getGreeting()</tt> contains <tt>"Tycho Demo"</tt>
+					<br /><img src="../resources/test_impl.png" />
+				</li>
+				<li>test should now succeed when executed in Eclipse:
+					<br /><img src="../resources/test_success_eclipse.png" />
+				</li>
+				<li><tt>Run As > Maven build</tt> on <tt>tychodemo.parent</tt> should now also succeed
+					<br /><img src="../resources/test_success_maven.png" />
+				</li>
+			</ul>
+		</li>
+	</ol>
 
-</li>
-</ol>  
-
-<p align="center">
-<a href="../../Exercise_01_Create_RCP_Bundle/README.html">&lt;Previous Exercise</a> | <a href="../../../README.html">TOC</a> | <a href="../../Exercise_03_Add_Feature/tychodemo.parent/README.html">Next Exercise&gt;</a> 
-</p>
+	<p align="center">
+		<a href="../../Exercise_01_Create_RCP_Bundle/README.html">&lt;Previous Exercise</a>
+		| <a href="../../../README.html">TOC</a>
+		| <a href="../../Exercise_03_Add_Feature/tychodemo.parent/README.html">Next Exercise&gt;</a>
+	</p>
 
 </body>
-</html>  
-
-
-
-
-
-
-
+</html>

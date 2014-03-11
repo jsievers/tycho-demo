@@ -4,84 +4,73 @@
 <title>EclipseCon 2013 Tycho Tutorial - Exercise 1</title>
 </head>
 <body>
-<p align="center">
- <a href="../../README.html">TOC</a> | <a href="../Exercise_02_Add_Test_Fragment/tychodemo.parent/README.html">Next Exercise&gt;</a> 
-</p>
-<h2>Exercise 1: Create and build a plugin with an Eclipse 4 sample application</h2>
+	<p align="center">
+		<a href="../../README.html">TOC</a>
+		| <a href="../Exercise_02_Add_Test_Fragment/tychodemo.parent/README.html">Next Exercise&gt;</a>
+	</p>
 
-In this exercise, we will use the Eclipse 4 tools to create a plugin with a simple Eclipse 4 Rich Client Platform application.<br/>
-We will compile and run the plugin from the IDE and then show how to build it with Tycho by converting it to Maven project.
-<ol>
-<li>Create a new Eclipse 4 sample application in a plug-in called <tt>tychodemo.bundle</tt>
-<ul>
-<li><tt>File > New > Project > Eclipse 4 > Eclipse 4 Application Project</tt></li>
-<li>Enter "tychodemo.bundle" as project name</li>
-<li>In "Content", enter Name: "Tycho Demo Bundle"</li>
-<li>In "Eclipse 4 Application", keep all default values and press Finish</li>
-<table>
-<tr>
-<td valign="top"><img src ="resources/new_e4_app.png" /></td>
-<td valign="top"><img src ="resources/new_e4_app_1.png" /></td>
-</tr>
-<tr>
-<td valign="top"><img src ="resources/new_e4_app_2.png" /></td>
-<td valign="top"><img src ="resources/new_e4_app_3.png" /></td>
-</tr>
-</table>
-</ul>
-</li>
-<li>Run the application to check if it works:
-<ul>
- <li>Open the Product definition file <tt>tychodemo.bundle.product</tt></li>
- <li>In the tab "Overview", press "Launch an Eclipse application"<br/>
- <img src="resources/product_1.png"/>
- </li>
- 
- <li>You should see a small RCP window with title "tychodemo.bundle".<br/>
-  <img src="resources/screenshot_1.png"/>
+	<h2>Exercise 1: Create and build a plugin with an Eclipse 4 sample application</h2>
 
-   </li>
- <li>Open the <tt>Help > About</tt> menu. A dialog box should appear:<br/>
-  <img src="resources/about_1.png"/>
- 
- </li>
- <li>Open <tt>tychodemo.bundle.handlers.AboutHandler</tt> and change the about text from <tt>"Eclipse 4 Application example."</tt> to <tt>"Tycho Demo RCP"</tt><br/>
- <img src ="resources/about_2.png" /></li>
-<li>Open <tt>tychodemo.bundle.product</tt> and launch the Eclipse application again. Open the <tt>Help > About</tt> dialog. You should see your message now: <br/>
-<img src ="resources/about_3.png" />
- </li>
- </ul>
- </li>
- <li>To be independent of network access to <tt><a href="http://repo1.maven.org">Maven Central (http://repo1.maven.org)</a></tt>, we will use the pre-filled local maven repository from the USB stick:<br/>
-Copy the folder <tt>.m2/</tt> to your user home directory <tt>~</tt> (Linux/Mac) or <tt>%USERPROFILE%</tt> (Windows).<br/>
-NOTE: If you have already used maven before, you may want to save a backup of your <tt>~/.m2/settings.xml</tt> file.
-</li>
+	In this exercise, we will use the Eclipse 4 tools to create a plugin with a simple Eclipse 4 Rich Client Platform application.
+	<br />We will compile and run the plugin from the IDE and then show how to build it with Tycho by converting it to Maven project.
+	<ol>
+		<li>Create a new Eclipse 4 sample application in a plug-in called <tt>tychodemo.bundle</tt> <ul>
+			<li><tt>File > New > Project > Eclipse 4 > Eclipse 4 Application Project</tt></li>
+			<li>Enter "tychodemo.bundle" as project name</li>
+			<li>In "Content", enter Name: "Tycho Demo Bundle"</li>
+			<li>In "Eclipse 4 Application", keep all default values and press Finish</li>
+			<li><table>
+				<tr>
+					<td valign="top"><img src="resources/new_e4_app.png" /></td>
+					<td valign="top"><img src="resources/new_e4_app_1.png" /></td>
+				</tr>
+				<tr>
+					<td valign="top"><img src="resources/new_e4_app_2.png" /></td>
+					<td valign="top"><img src="resources/new_e4_app_3.png" /></td>
+				</tr>
+			</table></li></ul>
+		</li>
+		<li>Run the application to check if it works: <ul>
+			<li>Open the Product definition file <tt>tychodemo.bundle.product</tt></li>
+			<li>In the tab "Overview", press "Launch an Eclipse application"
+				<br /><img src="resources/product_1.png" />
+			</li>
+			<li>You should see a small RCP window with title "tychodemo.bundle".
+				<br /><img src="resources/screenshot_1.png" />
+			</li>
+			<li>Open the <tt>Help > About</tt> menu. A dialog box should appear:
+				<br /><img src="resources/about_1.png" />
+			</li>
+			<li>Open <tt>tychodemo.bundle.handlers.AboutHandler</tt> and change the about text from <tt>"Eclipse 4 Application example."</tt> to <tt>"Tycho Demo RCP"</tt>
+				<br /><img src="resources/about_2.png" /></li>
+			<li>Open <tt>tychodemo.bundle.product</tt> and launch the Eclipse application again. Open the <tt>Help > About</tt> dialog. You should see your message now:
+				<br /><img src="resources/about_3.png" />
+			</li>
+		</ul></li>
+		<li>To be independent of network access to <tt><a href="http://repo1.maven.org">Maven Central (http://repo1.maven.org)</a> </tt>, we will use the pre-filled local maven repository from the USB stick:
+			<br />Copy the folder <tt>.m2/</tt> to your user home directory <tt>~</tt> (Linux/Mac) or <tt>%USERPROFILE%</tt> (Windows).
+			<br />NOTE: If you have already used maven before, you may want to save a backup of your <tt>~/.m2/settings.xml</tt> file.
+		</li>
 
- <li><a name="convert_to_maven"/>Right-click the <tt>tychodemo.bundle</tt> project and select <tt>Configure > Convert to Maven Project</tt><br/>
-   <img src ="resources/convert_to_maven_1.png" />
- </li>
- <li>Enter <tt>Group Id: tychodemo</tt>, <tt>Version: 1.0.0-SNAPSHOT</tt>, <tt>Packaging: eclipse-plugin</tt>.<br/>
-   <img src ="resources/convert_to_maven_2.png" />
- </li>
- Note that <tt>MANIFEST/Bundle-SymbolicName == POM/artifactId</tt> and <tt>MANIFEST/&lt;Bundle-Version&gt;.qualifier == POM/&lt;version&gt;-SNAPSHOT</tt>
-<li>
-You will get a build error on the newly created file <tt>pom.xml</tt>: <tt>"Project build error: Unknown packaging: eclipse-plugin"</tt>.<br/>
-This is expected, because the Tycho build extension is not yet configured (see next steps).<br/>
-   <img src ="resources/build_error.png" />
-</li>
- 
-<li>Open <tt>pom.xml</tt>, go to Tab "pom.xml". </li>
-<li> To define the Tycho version to be used, add this snippet into <tt>&lt;project&gt;</tt> :
+		<li><a name="convert_to_maven" />Right-click the <tt>tychodemo.bundle</tt> project and select <tt>Configure > Convert to Maven Project</tt>
+			<br /><img src="resources/convert_to_maven_1.png" />
+		</li>
+		<li>Enter <tt>Group Id: tychodemo</tt>, <tt>Version: 1.0.0-SNAPSHOT</tt>, <tt>Packaging: eclipse-plugin</tt>.
+			<br /><img src="resources/convert_to_maven_2.png" />
+			<br />Note that <tt>MANIFEST/Bundle-SymbolicName == POM/artifactId</tt> and <tt>MANIFEST/&lt;Bundle-Version&gt;.qualifier == POM/&lt;version&gt;-SNAPSHOT</tt>
+		</li>
+		<li>You will get a build error on the newly created file <tt>pom.xml</tt>: <tt>"Project build error: Unknown packaging: eclipse-plugin"</tt>.
+			<br />This is expected, because the Tycho build extension is not yet configured (see next steps).
+			<br /><img src="resources/build_error.png" />
+		</li>
 
-<pre>
+		<li>Open <tt>pom.xml</tt>, go to Tab "pom.xml".</li>
+		<li>To define the Tycho version to be used, add this snippet into <tt>&lt;project&gt;</tt> : <pre>
   &lt;properties&gt;
     &lt;tycho-version&gt;0.17.0&lt;/tycho-version&gt;
-  &lt;/properties&gt;
-</pre>
-</li>
-<li> To enable tycho, add this snippet into <tt>&lt;project&gt;</tt> :
-
-<pre>
+  &lt;/properties&gt;</pre>
+		</li>
+		<li>To enable tycho, add this snippet into <tt>&lt;project&gt;</tt> : <pre>
   &lt;build&gt;
     &lt;plugins&gt;
       &lt;plugin&gt;
@@ -92,33 +81,26 @@ This is expected, because the Tycho build extension is not yet configured (see n
         &lt;extensions&gt;true&lt;/extensions&gt;
       &lt;/plugin&gt;
     &lt;/plugins&gt;
-  &lt;/build&gt;
-</pre>
-</li>
+  &lt;/build&gt;</pre>
+		</li>
 
-<li>If there are still error markers from m2eclipse:
-<ul>
-<li><tt>"Project build error: Unknown packaging: eclipse-plugin"</tt>: you have to restart your IDE (this is probably an m2eclipse bug)</li>
-<li><tt>"Project configuration is not up to date"</tt>: Right-click the project <tt>Maven > Update Project...</tt>, select all projects and click OK</li>
-</ul>
-</li>
+		<li>If there are still error markers from m2eclipse: <ul>
+			<li><tt>"Project build error: Unknown packaging: eclipse-plugin"</tt>: you have to restart your IDE (this is probably an m2eclipse bug)</li>
+			<li><tt>"Project configuration is not up to date"</tt>: Right-click the project <tt>Maven > Update Project...</tt>, select all projects and click OK</li>
+		</ul></li>
 
-<li> Right-click the tychodemo.bundle project and select <tt>Run As > Maven build</tt> <br/>
-<img src="resources/run_maven_1.png"/>
-</li>
-<li> Enter  <tt>Goals: clean install</tt> <br/>
-<img src="resources/run_maven_2.png"/>
-</li>
+		<li>Right-click the tychodemo.bundle project and select <tt>Run As > Maven build</tt>
+			<br /><img src="resources/run_maven_1.png" />
+		</li>
+		<li>Enter <tt>Goals: clean install</tt>
+			<br /><img src="resources/run_maven_2.png" />
+		</li>
 
-<li>Expected result: the build fails:<br/>
-<img src="resources/build_error_p2.png"/>
+		<li>Expected result: the build fails:<br /> <img src="resources/build_error_p2.png" />
 
-</li>
-<li>
-Specify the p2 repository for resolving dependencies: <br/>
-<ul>
-  <li>Add this snippet in <tt>&lt;project&gt;</tt> 
-<pre>
+		</li>
+		<li>Specify the p2 repository for resolving dependencies: <ul>
+			<li>Add this snippet in <tt>&lt;project&gt;</tt> <pre>
   &lt;repositories&gt;
     &lt;!-- configure p2 repository to resolve against --&gt;
     &lt;repository&gt;
@@ -126,27 +108,26 @@ Specify the p2 repository for resolving dependencies: <br/>
       &lt;layout&gt;p2&lt;/layout&gt;
       &lt;url&gt;http://download.eclipse.org/eclipse/updates/4.3&lt;/url&gt;
     &lt;/repository&gt;
-  &lt;/repositories&gt;
-</pre></li>
-	<li>In order to be independent of network access to eclipse.org:
-	<ul>
-        <li>Open <tt>~/.m2/settings.xml</tt> (Linux/Mac) or <tt>%USERPROFILE%/.m2/settings.xml</tt> (Windows)</li>
-		<li>Replace the mirror URL <tt>file:/TODO/path/to/tutorial/p2_repository</tt> with a real <tt>file:</tt> URL pointing to your <a href="../../p2_repository">local copy</a>  of the p2 repository from the USB stick.</li>
-		</ul>
-		<br/>This p2 repository contains a subset of the <a href="http://download.eclipse.org/releases/kepler/">Kepler p2 repository</a>.<br/>
-	</li>
-</ul>
-</li>
+  &lt;/repositories&gt;</pre>
+			</li>
+			<li>In order to be independent of network access to eclipse.org:<ul>
+				<li>Open <tt>~/.m2/settings.xml</tt> (Linux/Mac) or <tt>%USERPROFILE%/.m2/settings.xml</tt> (Windows)</li>
+				<li>Replace the mirror URL <tt>file:/TODO/path/to/tutorial/p2_repository</tt> with a real <tt>file:</tt> URL pointing to your 
+					<a href="../../p2_repository">local copy</a> of the p2 repository from the USB stick.
+				</li></ul>
+				<br />This p2 repository contains a subset of the <a href="http://download.eclipse.org/releases/kepler/">Kepler p2 repository</a>.
+			</li></ul>
+		</li>
 
-<li> Expected result is a <tt>SUCCESSFUL</tt> build with the bundle jar 
-  <tt>tychodemo.bundle-1.0.0-SNAPSHOT.jar</tt> in the <tt>target/</tt> folder of the project <br/>
-  (you may have to refresh the project to display the <tt>target/</tt> folder)<br/>
-<img src="resources/build_success.png"/>
-  </li>
-</ol>
-<p align="center">
- <a href="../../README.html">TOC</a> | <a href="../Exercise_02_Add_Test_Fragment/tychodemo.parent/README.html">Next Exercise&gt;</a> 
-</p>
+		<li>Expected result is a <tt>SUCCESSFUL</tt> build with the bundle jar <tt>tychodemo.bundle-1.0.0-SNAPSHOT.jar</tt> in the <tt>target/</tt> folder of the project <br /> (you may have to refresh
+			the project to display the <tt>target/</tt> folder)<br /> <img src="resources/build_success.png" />
+		</li>
+	</ol>
+
+	<p align="center">
+		<a href="../../README.html">TOC</a>
+		| <a href="../Exercise_02_Add_Test_Fragment/tychodemo.parent/README.html">Next Exercise&gt;</a>
+	</p>
 
 </body>
 </html>
