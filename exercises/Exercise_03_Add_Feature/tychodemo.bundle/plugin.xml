@@ -8,10 +8,6 @@
             name="tychodemo.bundle"
             application="org.eclipse.e4.ui.workbench.swt.E4Application">
          <property
-               name="clearPersistedState"
-               value="true">
-         </property>
-         <property
                name="applicationCSS"
                value="platform:/plugin/tychodemo.bundle/css/default.css">
          </property>

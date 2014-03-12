@@ -17,15 +17,15 @@
 
 	<!-- common settings for all modules -->
 	<properties>
-		<tycho-version>0.17.0</tycho-version>
+		<tycho-version>0.20.0</tycho-version>
 	</properties>
 
 	<repositories>
 		<!-- configure p2 repository to resolve against -->
 		<repository>
-			<id>eclipse-platform-m6</id>
+			<id>eclipse-project-luna</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/eclipse/updates/4.3</url>
+			<url>http://download.eclipse.org/eclipse/updates/4.4milestones</url>
 		</repository>
 	</repositories>
 
