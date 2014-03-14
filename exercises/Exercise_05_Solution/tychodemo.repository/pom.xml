@@ -20,16 +20,11 @@
 				<version>${tycho-version}</version>
 				<executions>
 					<execution>
-						<!-- install the product using the p2 director -->
-						<id>materialize-products</id>
+						<id>build-distributions</id>
 						<goals>
+							<!-- install the product using the p2 director -->
 							<goal>materialize-products</goal>
-						</goals>
-					</execution>
-					<execution>
-						<!-- create zip file with the installed product -->
-						<id>archive-products</id>
-						<goals>
+							<!-- create zip file with the installed product -->
 							<goal>archive-products</goal>
 						</goals>
 					</execution>
